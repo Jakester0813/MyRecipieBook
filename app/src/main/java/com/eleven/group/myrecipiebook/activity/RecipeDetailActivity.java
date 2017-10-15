@@ -44,10 +44,10 @@ public class RecipeDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(recipe.getTitle());
+        setSupportActionBar(toolbar);
         getRecipeFood2Fork(recipe);
 
     }
@@ -62,7 +62,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         String image = recipe.getImageUrl();
         Glide.with(getApplicationContext()).load(image).into(ivRecipeImage);
         tvTitle.setText(recipe.getTitle());
-        toolbar.setTitle(recipe.getTitle());
         tvPublisher.setText(recipe.getPublisher());
         tvSocialRank.setText(""+recipe.getSocialRank());
         mRecipe = recipe;
