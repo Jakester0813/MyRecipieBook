@@ -35,7 +35,7 @@ The following user stories must be completed:
 * [ ] Calculate differnt macros and calories for that day using the audio input.
 * [ ] Clickable recepie pictures (Hima)
 * [ ] Detailed recepie in next activity (Hima)
-* [ ] Able to go back on Home Activity at any time (Jake)
+* [x] Able to go back on Home Activity at any time (Jake)
 
 The following additional stories must also be completed:
 
