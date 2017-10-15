@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">My Recipie Book</string>
+    <string name="app_name">My Recipe Book</string>
+    <string name="share_text">Share Recipe</string>
+    <string name="share_intent_text">Share your Recipe with...</string>
     <string name="title_activity_recipe">RecipeActivity</string>
     <string name="yay_fragments">Yay Fragments!</string>
     <string name="ingredients">ingredients</string>

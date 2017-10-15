@@ -1,9 +1,15 @@
 package com.eleven.group.myrecipiebook.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
@@ -33,17 +39,20 @@ public class RecipeDetailActivity extends AppCompatActivity {
     TextView tvTitle;
     TextView tvPublisher;
     TextView tvSocialRank;
+
     ListView lvIngredients;
     ArrayAdapter<String> adapter;
+    Toolbar toolbar;
+    Recipe mRecipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(recipe.getTitle());
+        setSupportActionBar(toolbar);
         getRecipeFood2Fork(recipe);
 
     }
@@ -61,10 +70,13 @@ public class RecipeDetailActivity extends AppCompatActivity {
         tvPublisher.setText(recipe.getPublisher());
         tvSocialRank.setText(""+recipe.getSocialRank());
 
+
         // Create the adapter to convert the array to views
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipe.getIngredients());
         // Attach the adapter to a ListView
         lvIngredients.setAdapter(adapter);
+
+        mRecipe = recipe;
     }
 
     public void getRecipeFood2Fork(Recipe recipe) {
@@ -101,4 +113,51 @@ public class RecipeDetailActivity extends AppCompatActivity {
         });
     }
 
+    private void shareRecipe(){
+        Intent shareRecipeIntent = new Intent();
+        shareRecipeIntent.setAction(Intent.ACTION_SEND);
+        shareRecipeIntent.putExtra(Intent.EXTRA_TITLE, "Check out this recipe that I found on My Recipes Book");
+        shareRecipeIntent.putExtra(Intent.EXTRA_TEXT, setTextForSharing());
+        shareRecipeIntent.setType("text/plain");
+        startActivity(Intent.createChooser(shareRecipeIntent, getResources().getString(R.string.share_intent_text)));
+    }
+
+    private String setTextForSharing(){
+        StringBuilder sb = new StringBuilder(mRecipe.getTitle());
+        sb.append("\n \n");
+        sb.append("Ingredients: \n \n");
+        try {
+            JSONArray array = new JSONArray(mRecipe.getIngredients());
+            for (int i = 0; i < array.length(); i++){
+                sb.append("-").append(array.getString(i)).append("\n");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_recipe_detail, menu);
+
+        MenuItem item = menu.findItem(R.id.menu_share);
+        ShareActionProvider miShare = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_share:
+                shareRecipe();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 }
