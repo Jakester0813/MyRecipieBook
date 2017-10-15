@@ -12,7 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +29,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+
 import cz.msebera.android.httpclient.Header;
 
 public class RecipeDetailActivity extends AppCompatActivity {
@@ -35,10 +39,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
     TextView tvTitle;
     TextView tvPublisher;
     TextView tvSocialRank;
+
+    ListView lvIngredients;
+    ArrayAdapter<String> adapter;
     Toolbar toolbar;
     Recipe mRecipe;
-
-    //TextView tvIngredients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +62,20 @@ public class RecipeDetailActivity extends AppCompatActivity {
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         tvPublisher = (TextView) findViewById(R.id.tvPublisher);
         tvSocialRank = (TextView) findViewById(R.id.tvSocialRank);
-        //tvIngredients = (TextView) findViewById(R.id.tvIngredients);
+        lvIngredients = (ListView) findViewById(R.id.lvIngredients);
 
         String image = recipe.getImageUrl();
         Glide.with(getApplicationContext()).load(image).into(ivRecipeImage);
         tvTitle.setText(recipe.getTitle());
         tvPublisher.setText(recipe.getPublisher());
         tvSocialRank.setText(""+recipe.getSocialRank());
+
+
+        // Create the adapter to convert the array to views
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipe.getIngredients());
+        // Attach the adapter to a ListView
+        lvIngredients.setAdapter(adapter);
+
         mRecipe = recipe;
     }
 
