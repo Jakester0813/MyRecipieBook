@@ -1,6 +1,7 @@
 package com.eleven.group.myrecipiebook.model;
 
 import android.media.Image;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +17,15 @@ public class Recipe {
     private String publisher;
     private int socialRank;
     private long recipeId;
-    private String ingredients;
+    private ArrayList<String> ingredients;
+
+    public ArrayList<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(ArrayList<String> ingredients) {
+        this.ingredients = ingredients;
+    }
 
     public long getRecipeId() {
         return recipeId;
@@ -24,14 +33,6 @@ public class Recipe {
 
     public void setRecipeId(long recipeId) {
         this.recipeId = recipeId;
-    }
-
-    public String getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
     }
 
     public String getPublisher() {
@@ -75,7 +76,17 @@ public class Recipe {
             this.imageUrl = jsonObject.getString("image_url");
             this.publisher = jsonObject.getString("publisher");
             this.socialRank = jsonObject.getInt("social_rank");
-            this.ingredients = jsonObject.getString("ingredients");
+
+            this.ingredients = new ArrayList<String>();
+            try {
+                JSONArray arr = jsonObject.getJSONArray("ingredients");
+                Log.d("Recipe Ingredients: ", arr.toString());
+                for (int i = 0; i < arr.length(); i++) {
+                    this.ingredients.add(arr.getString(i));
+                }
+            } catch (JSONException e) {
+                // Log.d("Exceptiop", "");
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -96,4 +107,5 @@ public class Recipe {
     public static Recipe fromJSONObject(JSONObject object){
         return new Recipe(object);
     }
+
 }

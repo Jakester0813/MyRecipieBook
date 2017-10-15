@@ -7,30 +7,38 @@
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"/>
 
     <ImageView
         android:id="@+id/ivRecipeImage"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/tvPublisher"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/tvSocialRank"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/tvIngredients"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"/>
+
+    <ListView
+        android:id="@+id/lvIngredients"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </LinearLayout>
