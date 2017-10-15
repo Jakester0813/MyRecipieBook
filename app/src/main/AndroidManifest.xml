@@ -5,24 +5,27 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MyRecipieBookApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".MyRecipieBookApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="a3696b7a8b077ba97b9b261311022d30f3f607c4"
-            />
+            android:value="a3696b7a8b077ba97b9b261311022d30f3f607c4" />
+
+        <activity android:name=".activity.RecipeActivity"></activity>
+        <activity android:name=".activity.RecipeDetailActivity"></activity>
     </application>
 
 </manifest>

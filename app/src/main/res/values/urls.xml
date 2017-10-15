@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="FOOD2FORK_SEARCH_API">http://food2fork.com/api/search</string>
+    <string name="FOOD2FORK_RECIPE_API">http://food2fork.com/api/get</string>
+</resources>
