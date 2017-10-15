@@ -1,4 +1,4 @@
-package com.eleven.group.myrecipiebook;
+package com.eleven.group.myrecipiebook.activity;
 
 public class DirectionsFragment extends CheckBoxesFragment {
     @Override

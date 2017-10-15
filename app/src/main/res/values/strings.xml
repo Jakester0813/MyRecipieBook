@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">My Recipie Book</string>
     <string name="title_activity_recipe">RecipeActivity</string>
+    <string name="yay_fragments">Yay Fragments!</string>
+    <string name="ingredients">ingredients</string>
+    <string name="directions">directions</string>
 </resources>

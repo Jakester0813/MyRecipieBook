@@ -1,4 +1,6 @@
-package com.eleven.group.myrecipiebook;
+package com.eleven.group.myrecipiebook.activity;
+
+import com.eleven.group.myrecipiebook.R;
 
 public class ListAdapter extends RecyclerAdapter {
 

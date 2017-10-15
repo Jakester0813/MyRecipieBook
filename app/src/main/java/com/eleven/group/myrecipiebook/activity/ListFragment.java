@@ -1,4 +1,4 @@
-package com.eleven.group.myrecipiebook;
+package com.eleven.group.myrecipiebook.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.eleven.group.myrecipiebook.R;
 
 public class ListFragment extends Fragment {
 

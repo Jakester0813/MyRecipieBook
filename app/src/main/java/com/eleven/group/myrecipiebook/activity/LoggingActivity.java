@@ -1,4 +1,4 @@
-package com.eleven.group.myrecipiebook;
+package com.eleven.group.myrecipiebook.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

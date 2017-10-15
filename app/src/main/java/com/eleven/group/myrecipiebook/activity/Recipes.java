@@ -1,4 +1,6 @@
-package com.eleven.group.myrecipiebook;
+package com.eleven.group.myrecipiebook.activity;
+
+import com.eleven.group.myrecipiebook.R;
 
 public class Recipes {
     public static String[] names = new String[]{"Crepes","Pancakes","Scone","French Toast", "Muffins", "Waffles","Toast", "Banana Bread"
