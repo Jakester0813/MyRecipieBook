@@ -1,29 +1,39 @@
 package com.eleven.group.myrecipiebook.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
 import com.eleven.group.myrecipiebook.R;
 
-public class MainActivity extends AppCompatActivity {
-
+//Sid testing
+public class MainActivity extends AppCompatActivity
+        implements ListFragment.OnRecipeSelectedInterface, GridFragment.OnRecipeSelectedInterface {
+    public static final String LIST_FRAGMENT = "list_fragment";
+    public static final String VIEW_PAGER_FRAGMENT = "viewpager_fragment";
     Button btnRecipe;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+            GridFragment savedFragment = (GridFragment) getSupportFragmentManager().findFragmentByTag(LIST_FRAGMENT);
 
-        btnRecipe = (Button) findViewById(R.id.btnRecipe);
+            // Prevents the fragment from being recreated every time the activty's onCreate() method is called
+            if (savedFragment == null) {
+                GridFragment fragment = new GridFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.placeholder, fragment, LIST_FRAGMENT);
+                fragmentTransaction.commit();
+            } // if
+
+        btnRecipe = (Button) findViewById(R.id.button);
         btnRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,7 +41,40 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-    }
+
+    } // onCreate()
+
+    @Override
+    public void onListRecipeSelected(int index) {
+        ViewPagerFragment fragment = new ViewPagerFragment();
+
+        // Store the index in the bundle to pass it to the next fragment instead of using a constructor
+        Bundle bundle = new Bundle();
+        bundle.putInt(ViewPagerFragment.KEY_RECIPE_INDEX, index);
+        fragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.placeholder, fragment, VIEW_PAGER_FRAGMENT);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    } // onListRecipeSelected()
+
+    @Override
+    public void onGridRecipeSelected(int index) {
+        DualPaneFragment fragment = new DualPaneFragment();
+
+        // Store the index in the bundle to pass it to the next fragment instead of using a constructor
+        Bundle bundle = new Bundle();
+        bundle.putInt(ViewPagerFragment.KEY_RECIPE_INDEX, index);
+        fragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.placeholder, fragment, VIEW_PAGER_FRAGMENT);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    } // onGridRecipeSelected()
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,4 +82,4 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_search, menu);
         return true;
     }
-}
+} // MainActivity
