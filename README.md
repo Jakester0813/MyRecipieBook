@@ -39,7 +39,7 @@ The following user stories must be completed:
 
 The following additional stories must also be completed:
 
-* [ ] User should be able to share the recepie with the message icon (Jake)
+* [x] User should be able to share the recepie with the message icon (Jake)
 * [ ] Show graphical representation of water intake
 * [ ] Differentiate recepies into breakfast, lunch, snack and dinner (Sid)
 
