@@ -15,6 +15,7 @@
         android:layout_marginTop="10dp"
         android:textSize="25sp"
         android:textColor="@color/title_color"
+        android:textStyle="bold"
         android:layout_marginLeft="10dp"/>
 
     <ImageView
@@ -36,6 +37,7 @@
             android:layout_height="wrap_content"
             android:text="@string/publisher"
             android:textColor="@color/text_color"
+            android:textStyle="italic"
             android:layout_marginLeft="5dp"/>
 
         <TextView
@@ -50,6 +52,7 @@
             android:layout_height="wrap_content"
             android:text="@string/social_rank"
             android:textColor="@color/text_color"
+            android:textStyle="italic"
             android:layout_marginLeft="5dp"/>
 
         <TextView

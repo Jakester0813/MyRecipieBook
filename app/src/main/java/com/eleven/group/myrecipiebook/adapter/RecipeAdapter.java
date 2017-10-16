@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.eleven.group.myrecipiebook.R;
@@ -16,10 +17,12 @@ import java.util.List;
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
         public ImageView recipeImage;
+        public TextView recipeTitle;
 
         public ViewHolder(View recipe) {
             super(recipe);
             recipeImage = (ImageView) recipe.findViewById(R.id.ivRecipeImage);
+            recipeTitle = (TextView) recipe.findViewById(R.id.tvRecipeTitle);
             recipe.setOnClickListener(this);
         }
 
@@ -60,6 +63,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
     public void onBindViewHolder(RecipeAdapter.ViewHolder viewHolder, int position){
         Recipe recipe = recipeList.get(position);
 
+        viewHolder.recipeTitle.setText(recipe.getTitle());
         ImageView imageView = viewHolder.recipeImage;
         imageView.setImageResource(0);
         String imageUrl = recipe.getImageUrl();
