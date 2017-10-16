@@ -1,4 +1,4 @@
-package com.eleven.group.myrecipiebook.activity;
+package com.eleven.group.myrecipiebook.fragment;
 
 import android.app.Fragment;
 import android.content.Context;

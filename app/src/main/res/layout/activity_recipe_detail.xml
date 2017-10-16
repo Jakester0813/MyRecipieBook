@@ -11,33 +11,66 @@
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:layout_marginTop="10dp"
-        android:textStyle="bold"/>
+        android:textSize="25sp"
+        android:textColor="@color/title_color"
+        android:layout_marginLeft="10dp"/>
 
     <ImageView
         android:id="@+id/ivRecipeImage"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:scaleType="fitCenter"
         android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:id="@+id/tvPublisher"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
-    <TextView
-        android:id="@+id/tvSocialRank"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/tvPublisherTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/publisher"
+            android:textColor="@color/text_color"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/tvPublisher"
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/tvSocialRankTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/social_rank"
+            android:textColor="@color/text_color"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/tvSocialRank"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"/>
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/tvIngredients"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:layout_marginTop="10dp"/>
+        android:text="@string/ingredients"
+        android:textSize="15sp"
+        android:textColor="@color/text_color"
+        android:textStyle="italic"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"/>
 
     <ListView
         android:id="@+id/lvIngredients"
