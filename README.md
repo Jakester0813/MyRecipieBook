@@ -2,7 +2,7 @@
 
 Submitted by: **Siddhata Patil**, **Jacob Rushing** and **Himavarshini Mittapally**
 
-Time spent: **5** hours spent in total.
+Time spent: **10** hours spent in total.
 
 
 Bon Appetit is a Food and Nutrition App.
@@ -29,20 +29,27 @@ The following user stories must be completed:
 
 * [ ] Sign In Logo Activity (email and password)
 * [ ] Sign Up activity (Full name, email and Password)
-* [ ] Home Activity with clickable contents (Sid)
+* [x] Home Activity with clickable contents (Sid)
 * [ ] Ask users about weight and height to calculate their daily maximum calories
 * [ ] Users must be able to speak their daily meals using in built microphone.
 * [ ] Calculate differnt macros and calories for that day using the audio input.
-* [ ] Clickable recepie pictures (Hima)
-* [ ] Detailed recepie in next activity (Hima)
+* [x] Clickable recepie pictures (Hima)
+* [x] Detailed recepie in next activity (Hima)
 * [x] Able to go back on Home Activity at any time (Jake)
 
 The following additional stories must also be completed:
 
 * [x] User should be able to share the recepie with the message icon (Jake)
-* [ ] Show graphical representation of water intake
-* [ ] Differentiate recepies into breakfast, lunch, snack and dinner (Sid)
+* [x] Differentiate recepies into breakfast, lunch, snack and dinner (Sid)
 
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='https://i.imgur.com/nXZopV2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## End to end flow of our application using Proto.io:
 
@@ -73,11 +80,6 @@ The following additional stories must also be completed:
 * [x] When clicked Home button
 <img src='https://github.com/SiddhataPatil/MyRecipieBook/blob/master/app/3.png' width="365" height="750" />
 
-* [x] When clicked on "Note Water Intake"
-<img src='https://github.com/SiddhataPatil/MyRecipieBook/blob/master/app/3.3.png' width="365" height="750" />
-
 * [x] When clicked Home button
 <img src='https://github.com/SiddhataPatil/MyRecipieBook/blob/master/app/3.png' width="365" height="750" />
 
-* [x] When clicked on "Shopping List"
-<img src='https://github.com/SiddhataPatil/MyRecipieBook/blob/master/app/3.4.png' width="365" height="750" />
