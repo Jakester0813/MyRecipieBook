@@ -43,6 +43,13 @@ The following additional stories must also be completed:
 * [x] Differentiate recepies into breakfast, lunch, snack and dinner (Sid)
 
 
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='https://i.imgur.com/nXZopV2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## End to end flow of our application using Proto.io:
 
