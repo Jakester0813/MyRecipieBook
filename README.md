@@ -40,8 +40,8 @@ The following user stories must be completed:
 The following additional stories must also be completed:
 
 * [x] User should be able to share the recepie with the message icon (Jake)
-* [ ] Show graphical representation of water intake
 * [x] Differentiate recepies into breakfast, lunch, snack and dinner (Sid)
+
 
 
 ## End to end flow of our application using Proto.io:
@@ -73,11 +73,6 @@ The following additional stories must also be completed:
 * [x] When clicked Home button
 <img src='https://github.com/SiddhataPatil/MyRecipieBook/blob/master/app/3.png' width="365" height="750" />
 
-* [x] When clicked on "Note Water Intake"
-<img src='https://github.com/SiddhataPatil/MyRecipieBook/blob/master/app/3.3.png' width="365" height="750" />
-
 * [x] When clicked Home button
 <img src='https://github.com/SiddhataPatil/MyRecipieBook/blob/master/app/3.png' width="365" height="750" />
 
-* [x] When clicked on "Shopping List"
-<img src='https://github.com/SiddhataPatil/MyRecipieBook/blob/master/app/3.4.png' width="365" height="750" />
