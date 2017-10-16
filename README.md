@@ -2,7 +2,7 @@
 
 Submitted by: **Siddhata Patil**, **Jacob Rushing** and **Himavarshini Mittapally**
 
-Time spent: **10** hours spent in total.
+Time spent: **24** hours spent in total.
 
 
 Bon Appetit is a Food and Nutrition App.
@@ -77,9 +77,5 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 * [x] When clicked on a Recepie picture
 <img src='https://github.com/SiddhataPatil/MyRecipieBook/blob/master/app/3.2b.png' width="365" height="750" />
 
-* [x] When clicked Home button
-<img src='https://github.com/SiddhataPatil/MyRecipieBook/blob/master/app/3.png' width="365" height="750" />
 
-* [x] When clicked Home button
-<img src='https://github.com/SiddhataPatil/MyRecipieBook/blob/master/app/3.png' width="365" height="750" />
 
