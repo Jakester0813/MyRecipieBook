@@ -1,4 +1,4 @@
-package com.eleven.group.myrecipiebook.activity;
+package com.eleven.group.myrecipiebook.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.eleven.group.myrecipiebook.R;
+import com.eleven.group.myrecipiebook.activity.Recipes;
 
 public abstract class RecyclerAdapter extends RecyclerView.Adapter {
     @Override

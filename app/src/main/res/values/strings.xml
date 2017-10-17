@@ -4,6 +4,8 @@
     <string name="share_intent_text">Share your Recipe with...</string>
     <string name="title_activity_recipe">RecipeActivity</string>
     <string name="yay_fragments">Yay Fragments!</string>
-    <string name="ingredients">ingredients</string>
-    <string name="directions">directions</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="directions">Directions</string>
+    <string name="publisher">Publisher: </string>
+    <string name="social_rank">SocialRank: </string>
 </resources>

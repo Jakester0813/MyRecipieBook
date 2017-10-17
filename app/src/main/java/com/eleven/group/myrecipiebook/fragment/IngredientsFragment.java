@@ -1,4 +1,6 @@
-package com.eleven.group.myrecipiebook.activity;
+package com.eleven.group.myrecipiebook.fragment;
+
+import com.eleven.group.myrecipiebook.activity.Recipes;
 
 public class IngredientsFragment extends CheckBoxesFragment {
     @Override

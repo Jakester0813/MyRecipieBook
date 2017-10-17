@@ -1,4 +1,4 @@
-package com.eleven.group.myrecipiebook.activity;
+package com.eleven.group.myrecipiebook.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.eleven.group.myrecipiebook.R;
+import com.eleven.group.myrecipiebook.activity.Recipes;
 
 public class DualPaneFragment extends Fragment {
     private static final String INGREDIENTS_FRAGMENT = "ingredients_fragment";

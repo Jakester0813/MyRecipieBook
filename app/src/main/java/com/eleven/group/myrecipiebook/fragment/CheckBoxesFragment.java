@@ -1,4 +1,4 @@
-package com.eleven.group.myrecipiebook.activity;
+package com.eleven.group.myrecipiebook.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 import com.eleven.group.myrecipiebook.R;
+import com.eleven.group.myrecipiebook.fragment.ViewPagerFragment;
 
 public abstract class CheckBoxesFragment extends Fragment {
     private static final String KEY_CHECKED_BOXES = "key_checked_boxes";

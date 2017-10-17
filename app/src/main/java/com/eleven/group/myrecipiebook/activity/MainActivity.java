@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.eleven.group.myrecipiebook.R;
+import com.eleven.group.myrecipiebook.fragment.DualPaneFragment;
+import com.eleven.group.myrecipiebook.fragment.GridFragment;
+import com.eleven.group.myrecipiebook.fragment.ListFragment;
+import com.eleven.group.myrecipiebook.fragment.ViewPagerFragment;
 
 //Sid testing
 public class MainActivity extends AppCompatActivity
