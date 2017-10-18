@@ -15,7 +15,7 @@ import android.view.View;
 
 import com.eleven.group.myrecipiebook.R;
 import com.eleven.group.myrecipiebook.adapter.RecipeAdapter;
-import com.eleven.group.myrecipiebook.model.Recipe;
+import com.eleven.group.myrecipiebook.model.SearchRecipe;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -29,11 +29,11 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-public class RecipeActivity extends AppCompatActivity{
+public class SearchRecipeActivity extends AppCompatActivity{
 
     //private InfiniteScrollListener scrollListener;
 
-    ArrayList<Recipe> recipes;
+    ArrayList<SearchRecipe> recipes;
     RecipeAdapter adapter;
     RecyclerView listRecipes;
     StaggeredGridLayoutManager gridLayoutManager;
@@ -43,7 +43,7 @@ public class RecipeActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe);
+        setContentView(R.layout.activity_search_recipe);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -60,11 +60,11 @@ public class RecipeActivity extends AppCompatActivity{
             @Override
             public void recyclerViewListClicked(View v, int position) {
                 // create an intent to display the article
-                Intent i = new Intent(RecipeActivity.this, RecipeDetailActivity.class);
+                Intent i = new Intent(SearchRecipeActivity.this, RecipeDetailActivity.class);
                 // get the article to diasplay
-                Recipe recipe = recipes.get(position);
+                SearchRecipe searchRecipe = recipes.get(position);
                 // pass that article into intent
-                i.putExtra("recipe", Parcels.wrap(recipe));
+                i.putExtra("recipe", Parcels.wrap(searchRecipe));
                 // launch the activity
                 startActivity(i);
             }
@@ -91,7 +91,7 @@ public class RecipeActivity extends AppCompatActivity{
             public boolean onQueryTextSubmit(String newQuery) {
                 // performing query
                 query = newQuery;
-                searchRecipesFood2Fork(query, 0);
+                searchRecipesYummly(query, 0);
                 searchView.clearFocus();
                 return true;
             }
@@ -104,29 +104,31 @@ public class RecipeActivity extends AppCompatActivity{
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void searchRecipesFood2Fork(String query, int page) {
+    public void searchRecipesYummly(String query, int page) {
         AsyncHttpClient client = new AsyncHttpClient();
-        String strUrl = getString(R.string.FOOD2FORK_SEARCH_API);
-        String apiKey = getString(R.string.FOOD2FORK_API_KEY);
+        String strUrl = getString(R.string.YUMMLY_SEARCH_RECIPE_API);
+        String appId = getString(R.string.YUMMLY_APP_ID);
+        String appKey = getString(R.string.YUMMLY_API_KEY);
 
         RequestParams params = new RequestParams();
-        params.put("key", apiKey);
-        params.put("page", page);
+        params.put("_app_id", appId);
+        params.put("_app_key", appKey);
         params.put("q",query);
+        params.put("start", page);
 
         client.get(strUrl, params, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("DEBUG",response.toString());
+                Log.d("searchRecipesResponse:",response.toString());
 
                 JSONArray recipeJsonResults = null;
                 try{
-                    recipeJsonResults = response.getJSONArray("recipes");
-                    Log.d("searchRecipesFood2Fork:", recipeJsonResults.toString());
-                    recipes.addAll(Recipe.fromJSONArray(recipeJsonResults));
+                    recipeJsonResults = response.getJSONArray("matches");
+                    Log.d("searchRecipeMatches:", recipeJsonResults.toString());
+                    recipes.addAll(SearchRecipe.fromJSONArray(recipeJsonResults));
                     // making changes directly to adapter modifies the underline data and add it to array list
                     adapter.notifyDataSetChanged();
-                    Log.d("searchRecipesFood2Fork:", "Number of articles recieved = " + recipes.size());
+                    Log.d("searchRecipesYummly:", "No.of recipes recieved = " + recipes.size());
                 }
                 catch(JSONException e){
                     e.printStackTrace();

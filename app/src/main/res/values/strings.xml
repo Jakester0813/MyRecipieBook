@@ -6,6 +6,7 @@
     <string name="yay_fragments">Yay Fragments!</string>
     <string name="ingredients">Ingredients</string>
     <string name="directions">Directions</string>
-    <string name="publisher">Publisher: </string>
-    <string name="social_rank">SocialRank: </string>
+    <string name="total_time">Total time: </string>
+    <string name="number_of_servings">Servings: </string>
+    <string name="rating">Rating: </string>
 </resources>

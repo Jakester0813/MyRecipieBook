@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.eleven.group.myrecipiebook.R;
 import com.eleven.group.myrecipiebook.model.Recipe;
+import com.eleven.group.myrecipiebook.model.SearchRecipe;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -33,14 +34,22 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
+import static android.R.attr.apiKey;
+import static com.eleven.group.myrecipiebook.R.id.ivRecipeImage;
+import static com.eleven.group.myrecipiebook.R.id.lvIngredients;
+import static com.eleven.group.myrecipiebook.R.id.tvRating;
+import static com.eleven.group.myrecipiebook.R.id.tvRecipeName;
+import static com.eleven.group.myrecipiebook.R.id.tvTotalTime;
+
 public class RecipeDetailActivity extends AppCompatActivity {
 
-    ImageView ivRecipeImage;
-    TextView tvTitle;
-    TextView tvPublisher;
-    TextView tvSocialRank;
+    ImageView recipeImage;
+    TextView recipeName;
+    TextView totalTime;
+    //TextView tvServings;
+    TextView rating;
 
-    ListView lvIngredients;
+    ListView ingredients;
     ArrayAdapter<String> adapter;
     Toolbar toolbar;
     Recipe mRecipe;
@@ -49,60 +58,63 @@ public class RecipeDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
-        Recipe recipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
+        SearchRecipe searchRecipe = Parcels.unwrap(getIntent().getParcelableExtra("recipe"));
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(recipe.getTitle());
+        toolbar.setTitle(searchRecipe.getRecipeName());
         setSupportActionBar(toolbar);
-        getRecipeFood2Fork(recipe);
+        getRecipeYummly(searchRecipe);
 
     }
 
     public void detailView(Recipe recipe){
-        ivRecipeImage = (ImageView) findViewById(R.id.ivRecipeImage);
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        tvPublisher = (TextView) findViewById(R.id.tvPublisher);
-        tvSocialRank = (TextView) findViewById(R.id.tvSocialRank);
-        lvIngredients = (ListView) findViewById(R.id.lvIngredients);
+        recipeImage = (ImageView) findViewById(ivRecipeImage);
+        recipeName = (TextView) findViewById(tvRecipeName);
+        totalTime = (TextView) findViewById(tvTotalTime);
+        rating = (TextView) findViewById(tvRating);
+        ingredients = (ListView) findViewById(lvIngredients);
 
-        String image = recipe.getImageUrl();
-        Glide.with(getApplicationContext()).load(image).into(ivRecipeImage);
-        tvTitle.setText(recipe.getTitle());
-        tvPublisher.setText(recipe.getPublisher());
-        tvSocialRank.setText(""+recipe.getSocialRank());
+        String image = recipe.getDetailRecipeImage();
+        Glide.with(getApplicationContext()).load(image).into(recipeImage);
+        recipeName.setText(recipe.getDetailRecipeName());
+        totalTime.setText(recipe.getTotalTime());
+        rating.setText(""+recipe.getRating());
 
 
         // Create the adapter to convert the array to views
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipe.getIngredients());
         // Attach the adapter to a ListView
-        lvIngredients.setAdapter(adapter);
+        ingredients.setAdapter(adapter);
 
         mRecipe = recipe;
     }
 
-    public void getRecipeFood2Fork(Recipe recipe) {
+    public void getRecipeYummly(SearchRecipe searchRecipe) {
         AsyncHttpClient client = new AsyncHttpClient();
-        String strUrl = getString(R.string.FOOD2FORK_RECIPE_API);
-        String apiKey = getString(R.string.FOOD2FORK_API_KEY);
-        long recipeId = recipe.getRecipeId();
+        String strUrl = getString(R.string.YUMMLY_GET_RECIPE_API);
+        String appId = getString(R.string.YUMMLY_APP_ID);
+        String appKey = getString(R.string.YUMMLY_API_KEY);
+        String recipeId = searchRecipe.getRecipeId();
 
+        strUrl = strUrl + "/" + recipeId;
         RequestParams params = new RequestParams();
-        params.put("key", apiKey);
-        params.put("rId", recipeId);
+        params.put("_app_id", appId);
+        params.put("_app_key", appKey);
 
         client.get(strUrl, params, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("DEBUG",response.toString());
+                Log.d("getRecipeResponse",response.toString());
+                detailView(Recipe.fromJSONObject(response));
 
-                JSONObject recipeJsonResult = null;
+                /*JSONObject recipeJsonResult = null;
                 try{
-                    recipeJsonResult = response.getJSONObject("recipe");
-                    Log.d("getRecipeFood2Fork:", recipeJsonResult.toString());
+                    recipeJsonResult = response.getJSONObject("match");
+                    Log.d("searchRecipeMatches:", recipeJsonResult.toString());
                     detailView(Recipe.fromJSONObject(recipeJsonResult));
                 }
                 catch(JSONException e){
                     e.printStackTrace();
-                }
+                }*/
             }
 
             @Override
@@ -123,7 +135,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     private String setTextForSharing(){
-        StringBuilder sb = new StringBuilder(mRecipe.getTitle());
+        StringBuilder sb = new StringBuilder(mRecipe.getDetailRecipeName());
         sb.append("\n \n");
         sb.append("Ingredients: \n \n");
         try {
