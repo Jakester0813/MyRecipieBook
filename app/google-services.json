@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "505935158307",
+    "firebase_url": "https://my-recipe-book-a9511.firebaseio.com",
+    "project_id": "my-recipe-book-a9511",
+    "storage_bucket": "my-recipe-book-a9511.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505935158307:android:4e75385e2d55782b",
+        "android_client_info": {
+          "package_name": "com.eleven.group.myrecipiebook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505935158307-67b5onk7dridngne52ta0g443oq7s3d0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtQ_uimenSp9XGtRo0iVyHMRxXczIUVEw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
