@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="FOOD2FORK_API_KEY">e68e9c3a177afae3360aeff7ff83fc22</string>
+    <string name="YUMMLY_APP_ID">9d3b6da1</string>
+    <string name="YUMMLY_API_KEY">0c347af0c7efa60cbfc14e18699ee706</string>
 </resources>

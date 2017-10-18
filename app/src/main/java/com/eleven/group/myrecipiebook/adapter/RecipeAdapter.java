@@ -11,19 +11,20 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.eleven.group.myrecipiebook.R;
 import com.eleven.group.myrecipiebook.model.Recipe;
+import com.eleven.group.myrecipiebook.model.SearchRecipe;
 
 import java.util.List;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener{
-        public ImageView recipeImage;
-        public TextView recipeTitle;
+        public ImageView searchRecipeImage;
+        public TextView searchRecipeName;
 
-        public ViewHolder(View recipe) {
-            super(recipe);
-            recipeImage = (ImageView) recipe.findViewById(R.id.ivRecipeImage);
-            recipeTitle = (TextView) recipe.findViewById(R.id.tvRecipeTitle);
-            recipe.setOnClickListener(this);
+        public ViewHolder(View searchRecipe) {
+            super(searchRecipe);
+            searchRecipeImage = (ImageView) searchRecipe.findViewById(R.id.ivRecipeImage);
+            searchRecipeName = (TextView) searchRecipe.findViewById(R.id.tvRecipeName);
+            searchRecipe.setOnClickListener(this);
         }
 
         @Override
@@ -36,11 +37,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
         public void recyclerViewListClicked(View v, int position);
     }
 
-    private List<Recipe> recipeList;
+    private List<SearchRecipe> recipeList;
     private Context context;
     private static RecyclerViewClickListener itemListener;
 
-    public RecipeAdapter(Context context, List<Recipe> recipeList, RecyclerViewClickListener itemListener){
+    public RecipeAdapter(Context context, List<SearchRecipe> recipeList, RecyclerViewClickListener itemListener){
         this.recipeList = recipeList;
         this.context = context;
         this.itemListener = itemListener;
@@ -61,12 +62,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(RecipeAdapter.ViewHolder viewHolder, int position){
-        Recipe recipe = recipeList.get(position);
+        SearchRecipe searchRecipe = recipeList.get(position);
 
-        viewHolder.recipeTitle.setText(recipe.getTitle());
-        ImageView imageView = viewHolder.recipeImage;
+        viewHolder.searchRecipeName.setText(searchRecipe.getRecipeName());
+        ImageView imageView = viewHolder.searchRecipeImage;
         imageView.setImageResource(0);
-        String imageUrl = recipe.getImageUrl();
+        String imageUrl = searchRecipe.getRecipeImage();
         Glide.with(context).load(imageUrl).into(imageView);
     }
 
