@@ -24,10 +24,13 @@
             android:name="io.fabric.ApiKey"
             android:value="a3696b7a8b077ba97b9b261311022d30f3f607c4" />
 
-        <activity android:name=".activity.SearchRecipeActivity"
-            android:noHistory="true"></activity>
-        <activity android:name=".activity.RecipeDetailActivity"
-            android:noHistory="true"></activity>
+        <activity
+            android:name=".activity.SearchRecipeActivity"
+            android:noHistory="true" />
+        <activity
+            android:name=".activity.RecipeDetailActivity"
+            android:noHistory="true" />
+        <activity android:name=".activity.CalorieCalculator"></activity>
     </application>
 
 </manifest>
