@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity
         implements ListFragment.OnRecipeSelectedInterface, GridFragment.OnRecipeSelectedInterface {
     public static final String LIST_FRAGMENT = "list_fragment";
     public static final String VIEW_PAGER_FRAGMENT = "viewpager_fragment";
-    Button btnRecipe;
+    Button btnRecipe, btnAddMeal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +42,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, SearchRecipeActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnAddMeal = (Button) findViewById(R.id.btn_add_meal);
+        btnAddMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, AddMealActivity.class);
                 startActivity(i);
             }
         });

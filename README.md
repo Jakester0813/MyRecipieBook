@@ -29,7 +29,7 @@ The following user stories must be completed:
 
 * [x] Home Activity with clickable contents (Sid)
 * [ ] Ask users about weight and height to calculate their daily maximum calories (Hima)
-* [ ] Users must be able to speak their daily meals using in built microphone (Jake)
+* [x] Users must be able to speak their daily meals using in built microphone (Jake)
 * [ ] Calculate differnt macros and calories for that day using the audio input (Hima)
 * [ ] Use Camera to take picture of the recipe (Sid)
 * [ ] Share the picture of recipe with friends (Jake)
