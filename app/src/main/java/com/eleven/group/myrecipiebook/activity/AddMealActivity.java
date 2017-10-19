@@ -95,16 +95,7 @@ public class AddMealActivity extends AppCompatActivity {
         client.get(strUrl.toString(), params, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("DEBUG",response.toString());
-
-                JSONObject recipeJsonResult = null;
-                try{
-                    recipeJsonResult = response.getJSONObject("recipe");
-
-                }
-                catch(JSONException e){
-                    e.printStackTrace();
-                }
+                Recipe recipe = Recipe.fromJSONObject(response);
             }
 
             @Override
