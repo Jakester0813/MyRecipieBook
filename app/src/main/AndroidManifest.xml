@@ -30,7 +30,8 @@
         <activity
             android:name=".activity.RecipeDetailActivity"
             android:noHistory="true" />
-        <activity android:name=".activity.CalorieCalculator"></activity>
+        <activity android:name=".activity.CalorieCalculator" />
+        <activity android:name=".activity.MacrosCalculation"></activity>
     </application>
 
 </manifest>
