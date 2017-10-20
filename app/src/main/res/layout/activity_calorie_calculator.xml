@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.eleven.group.myrecipiebook.activity.CalorieCalculator">
+
+    <include
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/include" />
+
+    <TextView
+        android:id="@+id/tvGenderTitle"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/include"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:text="Gender"
+        android:textSize="20sp"
+        android:textColor="@color/text_color"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="100dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="88dp"
+        android:layout_alignTop="@+id/tvGenderTitle"
+        android:layout_toEndOf="@+id/tvGenderTitle">
+
+        <RadioButton
+            android:id="@+id/rbMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:buttonTint="@color/colorPrimaryDark"/>
+
+        <RadioButton
+            android:id="@+id/rbFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:buttonTint="@color/colorPrimaryDark"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvAgeTitle"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:layout_alignStart="@+id/tvGenderTitle"
+        android:layout_below="@+id/radioGroup"
+        android:layout_marginTop="34dp"
+        android:text="Age"
+        android:textSize="20sp"
+        android:textColor="@color/text_color"/>
+
+    <NumberPicker
+        android:id="@+id/npAge"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
+        android:solidColor="@color/colorPrimaryDark"
+        android:layout_alignStart="@+id/radioGroup"
+        android:layout_alignTop="@+id/tvAgeTitle"/>
+
+    <TextView
+        android:id="@+id/tvWeightTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvAgeTitle"
+        android:layout_below="@+id/tvAgeTitle"
+        android:layout_marginTop="42dp"
+        android:text="Weight(in kg)"
+        android:textSize="20sp"
+        android:textColor="@color/text_color"/>
+
+    <EditText
+        android:id="@+id/etWeight"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textSize="12sp"
+        android:layout_alignStart="@+id/npAge"
+        android:layout_alignTop="@+id/tvWeightTitle" />
+
+    <TextView
+        android:id="@+id/tvHeightTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:text="Height(in cm)"
+        android:textSize="20sp"
+        android:textColor="@color/text_color"
+        android:layout_below="@+id/etWeight"
+        android:layout_alignStart="@+id/tvWeightTitle" />
+
+    <EditText
+        android:id="@+id/etHeight"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textSize="12sp"
+        android:layout_alignTop="@+id/tvHeightTitle"
+        android:layout_alignStart="@+id/etWeight" />
+
+    <TextView
+        android:id="@+id/tvCalorieTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:text="Calories"
+        android:textSize="20sp"
+        android:textColor="@color/text_color"
+        android:layout_below="@+id/etHeight"
+        android:layout_alignStart="@+id/tvHeightTitle" />
+
+    <TextView
+        android:id="@+id/tvCalories"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_alignStart="@+id/etHeight"
+        android:layout_alignTop="@+id/tvCalorieTitle" />
+
+    <Button
+        android:id="@+id/btnCalculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/tvCalories"
+        android:layout_marginBottom="22dp" />
+
+</RelativeLayout>
