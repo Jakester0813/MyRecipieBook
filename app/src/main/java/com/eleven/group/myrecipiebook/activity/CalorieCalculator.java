@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -29,8 +30,8 @@ public class CalorieCalculator extends AppCompatActivity {
     RadioGroup radioGroup;
     RadioButton radioGenderButton;
     NumberPicker ageNumber;
-    TextView weight;
-    TextView height;
+    EditText weight;
+    EditText height;
     TextView calories;
     Button btnCal;
 
@@ -47,8 +48,8 @@ public class CalorieCalculator extends AppCompatActivity {
     public void setupView(){
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         ageNumber = (NumberPicker) findViewById(R.id.npAge);
-        weight = (TextView) findViewById(R.id.tvWeight);
-        height = (TextView) findViewById(R.id.tvHeight);
+        weight = (EditText) findViewById(R.id.etWeight);
+        height = (EditText) findViewById(R.id.etHeight);
         calories = (TextView) findViewById(R.id.tvCalories);
         btnCal = (Button) findViewById(R.id.btnCalculate);
 
@@ -63,9 +64,6 @@ public class CalorieCalculator extends AppCompatActivity {
             }
         });
 
-        weight.setText(""+ 60);
-        height.setText(""+ 164);
-
         btnCal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,11 +73,12 @@ public class CalorieCalculator extends AppCompatActivity {
                 Log.d("radioGenderButton: ", radioGenderButton.getText().toString());
 
                 if(radioGenderButton.getText().toString().equals("Male")){
-                    menBMR = (10*Integer.parseInt("60")) + (6.25*Integer.parseInt("164")) - (5*age) + 5;
+                    menBMR = (10*Integer.parseInt(weight.getText().toString())) +
+                            (6.25*Integer.parseInt(height.getText().toString())) - (5*age) + 5;
                     calories.setText(Double.toString(menBMR));
                 }
                 else if(radioGenderButton.getText().toString().equals("Female")){
-                    womenBMR = (10*Integer.parseInt("60")) + (6.25*Integer.parseInt("164")) - (5*age) - 161;
+                    womenBMR = (10*Integer.parseInt(weight.getText().toString())) + (6.25*Integer.parseInt(height.getText().toString())) - (5*age) - 161;
                     calories.setText(Double.toString(womenBMR));
                 }
             }

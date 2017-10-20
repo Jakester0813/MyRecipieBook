@@ -77,10 +77,11 @@
         android:textSize="20sp"
         android:textColor="@color/text_color"/>
 
-    <TextView
-        android:id="@+id/tvWeight"
+    <EditText
+        android:id="@+id/etWeight"
         android:layout_width="100dp"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
+        android:textSize="12sp"
         android:layout_alignStart="@+id/npAge"
         android:layout_alignTop="@+id/tvWeightTitle" />
 
@@ -92,15 +93,16 @@
         android:text="Height(in cm)"
         android:textSize="20sp"
         android:textColor="@color/text_color"
-        android:layout_below="@+id/tvWeight"
+        android:layout_below="@+id/etWeight"
         android:layout_alignStart="@+id/tvWeightTitle" />
 
-    <TextView
-        android:id="@+id/tvHeight"
+    <EditText
+        android:id="@+id/etHeight"
         android:layout_width="100dp"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
+        android:textSize="12sp"
         android:layout_alignTop="@+id/tvHeightTitle"
-        android:layout_alignStart="@+id/tvWeight" />
+        android:layout_alignStart="@+id/etWeight" />
 
     <TextView
         android:id="@+id/tvCalorieTitle"
@@ -110,14 +112,14 @@
         android:text="Calories"
         android:textSize="20sp"
         android:textColor="@color/text_color"
-        android:layout_below="@+id/tvHeight"
+        android:layout_below="@+id/etHeight"
         android:layout_alignStart="@+id/tvHeightTitle" />
 
     <TextView
         android:id="@+id/tvCalories"
         android:layout_width="150dp"
         android:layout_height="35dp"
-        android:layout_alignStart="@+id/tvHeight"
+        android:layout_alignStart="@+id/etHeight"
         android:layout_alignTop="@+id/tvCalorieTitle" />
 
     <Button

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "505935158307-dnbg833k4s9mrkesuplml5gh8i64a6ht.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eleven.group.myrecipiebook",
+            "certificate_hash": "ef4829f8ad7fd58c9eae489e24d043f8fd547a53"
+          }
+        },
+        {
           "client_id": "505935158307-67b5onk7dridngne52ta0g443oq7s3d0.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505935158307-67b5onk7dridngne52ta0g443oq7s3d0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
