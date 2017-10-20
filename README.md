@@ -41,9 +41,9 @@ The following additional stories must also be completed:
 
 * [x] User should be able to share the recepie with the message icon (Jake)
 * [x] Differentiate recepies into breakfast, lunch, snack and dinner (Sid)
-* [ ] Sign In Logo Activity (email and password) (Sid)
+* [ ] Sign In Logo Activity (email and password) (Jake)
 * [ ] Sign Up activity (Full name, email and Password) (Hima)
-* [ ] Splash Screen (Jake)
+* [x] Splash Screen (Jake)
 * [ ] Add My Recipies Activity for users to access their recipes (Sid)
 * [ ] Storing recipes in the database (Sid & Hima)
 

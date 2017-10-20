@@ -95,4 +95,10 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.menu_search, menu);
         return true;
     }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+    }
+
 } // MainActivity
