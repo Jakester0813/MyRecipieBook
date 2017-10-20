@@ -2,6 +2,7 @@ package com.eleven.group.myrecipiebook.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -31,8 +32,6 @@ import cz.msebera.android.httpclient.Header;
 
 public class SearchRecipeActivity extends AppCompatActivity{
 
-    //private InfiniteScrollListener scrollListener;
-
     ArrayList<SearchRecipe> recipes;
     RecipeAdapter adapter;
     RecyclerView listRecipes;
@@ -59,29 +58,21 @@ public class SearchRecipeActivity extends AppCompatActivity{
         RecipeAdapter.RecyclerViewClickListener listener = new RecipeAdapter.RecyclerViewClickListener(){
             @Override
             public void recyclerViewListClicked(View v, int position) {
-                // create an intent to display the article
                 Intent i = new Intent(SearchRecipeActivity.this, RecipeDetailActivity.class);
-                // get the article to diasplay
                 SearchRecipe searchRecipe = recipes.get(position);
-                // pass that article into intent
                 i.putExtra("recipe", Parcels.wrap(searchRecipe));
-                // launch the activity
                 startActivity(i);
             }
         };
 
         adapter = new RecipeAdapter(this, recipes, listener);
-        // Attach the adapter to the recyclerview to populate items
         listRecipes.setAdapter(adapter);
-        // Set StaggeredGridlayout manager to position the items
         gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        // Attach the layout manager to the recycler view
         listRecipes.setLayoutManager(gridLayoutManager);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_search, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
@@ -89,7 +80,6 @@ public class SearchRecipeActivity extends AppCompatActivity{
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String newQuery) {
-                // performing query
                 query = newQuery;
                 searchRecipesYummly(query, 0);
                 searchView.clearFocus();
@@ -102,6 +92,20 @@ public class SearchRecipeActivity extends AppCompatActivity{
         });
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.calculator) {
+            Intent i = new Intent(SearchRecipeActivity.this, CalorieCalculator.class);
+            startActivity(i);
+        }
+        else if(id == R.id.macros){
+            Intent i = new Intent(SearchRecipeActivity.this, MacrosCalculation.class);
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void searchRecipesYummly(String query, int page) {

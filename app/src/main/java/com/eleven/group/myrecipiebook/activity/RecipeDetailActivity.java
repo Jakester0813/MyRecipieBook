@@ -46,7 +46,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
     ImageView recipeImage;
     TextView recipeName;
     TextView totalTime;
-    //TextView tvServings;
     TextView rating;
 
     ListView ingredients;
@@ -63,7 +62,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         toolbar.setTitle(searchRecipe.getRecipeName());
         setSupportActionBar(toolbar);
         getRecipeYummly(searchRecipe);
-
     }
 
     public void detailView(Recipe recipe){
@@ -79,11 +77,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
         totalTime.setText(recipe.getTotalTime());
         rating.setText(""+recipe.getRating());
 
-
         // Create the adapter to convert the array to views
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipe.getIngredients());
-        // Attach the adapter to a ListView
-        ingredients.setAdapter(adapter);
+        ingredients.setAdapter(adapter);  // Attach the adapter to a ListView
 
         mRecipe = recipe;
     }
@@ -105,16 +101,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 Log.d("getRecipeResponse",response.toString());
                 detailView(Recipe.fromJSONObject(response));
-
-                /*JSONObject recipeJsonResult = null;
-                try{
-                    recipeJsonResult = response.getJSONObject("match");
-                    Log.d("searchRecipeMatches:", recipeJsonResult.toString());
-                    detailView(Recipe.fromJSONObject(recipeJsonResult));
-                }
-                catch(JSONException e){
-                    e.printStackTrace();
-                }*/
             }
 
             @Override
