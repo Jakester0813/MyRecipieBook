@@ -1,6 +1,5 @@
 package com.eleven.group.myrecipiebook.activity;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,13 +11,8 @@ import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.eleven.group.myrecipiebook.R;
-import com.eleven.group.myrecipiebook.model.User;
-
-import static android.R.attr.y;
-import static com.eleven.group.myrecipiebook.R.id.toolbar;
 
 public class CalorieCalculator extends AppCompatActivity {
 

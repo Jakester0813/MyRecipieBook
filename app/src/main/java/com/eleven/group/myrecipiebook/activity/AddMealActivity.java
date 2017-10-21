@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.eleven.group.myrecipiebook.R;
 import com.eleven.group.myrecipiebook.model.Recipe;
+import com.eleven.group.myrecipiebook.model.SearchRecipe;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -19,6 +20,7 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -27,11 +29,14 @@ import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
+import static android.util.Log.d;
+
 public class AddMealActivity extends AppCompatActivity {
 
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
     TextView mResult;
+    Recipe recipe;
 
     AsyncHttpClient client;
 
@@ -60,7 +65,7 @@ public class AddMealActivity extends AppCompatActivity {
         client.get(strUrl, params, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("DEBUG",response.toString());
+                d("DEBUG",response.toString());
 
                 JSONObject recipeJsonResult = null;
                 try{
@@ -75,7 +80,7 @@ public class AddMealActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                Log.d("onFailure: ", "" + throwable.toString());
+                d("onFailure: ", "" + throwable.toString());
             }
 
         });
@@ -95,37 +100,40 @@ public class AddMealActivity extends AppCompatActivity {
         client.get(strUrl.toString(), params, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Recipe recipe = Recipe.fromJSONObject(response);
+                Log.d("getNutritionresponse:",response.toString());
+                recipe = Recipe.fromJSONObject(response);
+                /*Intent i = new Intent(AddMealActivity.this, SearchRecipeActivity.class);
+                i.putExtra("getRecipe", Parcels.wrap(recipe));
+                startActivity(i);*/
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable t, JSONObject json) {
-                Log.d("onFailure: ", "" + statusCode);
-                Log.d("onFailure: ", "" + json);
+                d("onFailure: ", "" + statusCode);
+                d("onFailure: ", "" + json);
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                Log.d("onSuccess: ", "" + response.toString());
+                d("onSuccess: ", "" + response.toString());
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                Log.d("onFailure: ", "" + errorResponse.toString());
+                d("onFailure: ", "" + errorResponse.toString());
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                Log.d("onFailure: ", "" + throwable.toString());
+                d("onFailure: ", "" + throwable.toString());
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                Log.d("onSuccess: ", "" + responseString);
+                d("onSuccess: ", "" + responseString);
             }
         });
     }
-
 
 
     private void promptSpeechInput() {

@@ -16,6 +16,7 @@ import android.view.View;
 
 import com.eleven.group.myrecipiebook.R;
 import com.eleven.group.myrecipiebook.adapter.RecipeAdapter;
+import com.eleven.group.myrecipiebook.model.Recipe;
 import com.eleven.group.myrecipiebook.model.SearchRecipe;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -37,6 +38,7 @@ public class SearchRecipeActivity extends AppCompatActivity{
     RecyclerView listRecipes;
     StaggeredGridLayoutManager gridLayoutManager;
 
+    Recipe recipe;
     String query;
 
     @Override
@@ -47,6 +49,7 @@ public class SearchRecipeActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        recipe = Parcels.unwrap(getIntent().getParcelableExtra("getRecipe"));
         setupViews();
     }
 
@@ -103,6 +106,7 @@ public class SearchRecipeActivity extends AppCompatActivity{
         }
         else if(id == R.id.macros){
             Intent i = new Intent(SearchRecipeActivity.this, MacrosCalculation.class);
+            i.putExtra("macroRecipe", Parcels.wrap(recipe));
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
