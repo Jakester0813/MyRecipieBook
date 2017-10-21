@@ -2,6 +2,7 @@
     <string name="app_name">My Recipe Book</string>
     <string name="share_text">Share Recipe</string>
     <string name="add_meal">Add Your Meal</string>
+    <string name="log_in">Log In</string>
     <string name="share_intent_text">Share your Recipe with...</string>
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
     <string name="speech_prompt">What did you eat?</string>
@@ -12,4 +13,18 @@
     <string name="total_time">Total time: </string>
     <string name="number_of_servings">Servings: </string>
     <string name="rating">Rating: </string>
+    <string name="title_activity_sign_in">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 </resources>

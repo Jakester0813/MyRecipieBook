@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:name=".MyRecipieBookApplication"
         android:allowBackup="true"
@@ -12,15 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashActivity"
-            android:theme="@style/AppTheme.NoActionBarSplash"
-            android:noHistory="true">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBarSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity"></activity>
+        <activity android:name=".activity.MainActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
@@ -33,17 +40,20 @@
             android:name=".activity.RecipeDetailActivity"
             android:noHistory="true" />
         <activity android:name=".activity.CalorieCalculator" />
-        <activity android:name=".activity.MacrosCalculation"></activity>
-
-        <activity android:name=".activity.AddMealActivity"
+        <activity android:name=".activity.MacrosCalculation" />
+        <activity
+            android:name=".activity.AddMealActivity"
             android:noHistory="true">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="android.intent.action.SEARCH" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.VOICE" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".activity.SignInActivity"
+            android:label="@string/title_activity_sign_in"></activity>
     </application>
 
 </manifest>
