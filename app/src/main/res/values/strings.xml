@@ -12,4 +12,14 @@
     <string name="total_time">Total time: </string>
     <string name="number_of_servings">Servings: </string>
     <string name="rating">Rating: </string>
+    <string name="btnBrowse">My Recipes</string>
+    <string name="btnCamera">My Recipes</string>
+    <string name="btnVideo">Record Video</string>
+    <string name="btnImg">Click Picture</string>
+    <string name="btnVideoBrowse">My Recipe Videos</string>
+    <string name="file_rename">Input new name</string>
+    <string name="btnSetting">Camera Settings</string>
+    <string name="pictureSizeText">Picture Size</string>
+    <string name="videoSizeText">Video Size</string>
+    <string name="btnSave">Save</string>
 </resources>
