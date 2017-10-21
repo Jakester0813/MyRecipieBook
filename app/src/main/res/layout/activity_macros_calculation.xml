@@ -6,12 +6,39 @@
     android:layout_height="match_parent"
     tools:context="com.eleven.group.myrecipiebook.activity.MacrosCalculation">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/idPieChart"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.github.mikephil.charting.charts.PieChart>
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/idPieChart"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="10dp">
+
+        </com.github.mikephil.charting.charts.PieChart>
+
+        <TextView
+            android:id="@+id/tvCalories"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Today's Calories"
+            android:textSize="20sp"
+            android:textColor="@color/text_color"
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tvMacroCalories"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="2000/2000"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
 

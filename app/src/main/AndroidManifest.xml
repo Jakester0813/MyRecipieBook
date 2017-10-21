@@ -31,17 +31,18 @@
             android:name=".activity.RecipeDetailActivity"
             android:noHistory="true" />
         <activity android:name=".activity.CalorieCalculator" />
-        <activity android:name=".activity.MacrosCalculation"></activity>
-
-        <activity android:name=".activity.AddMealActivity"
+        <activity android:name=".activity.MacrosCalculation" />
+        <activity
+            android:name=".activity.AddMealActivity"
             android:noHistory="true">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="android.intent.action.SEARCH" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.VOICE" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".activity.SignUp"></activity>
     </application>
 
 </manifest>
