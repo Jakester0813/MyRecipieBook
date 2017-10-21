@@ -7,6 +7,7 @@ import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +37,6 @@ public class AddMealActivity extends AppCompatActivity {
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
     TextView mResult;
-    Recipe recipe;
-
     AsyncHttpClient client;
 
     @Override
@@ -48,93 +47,16 @@ public class AddMealActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_meal);
         mResult = (TextView)findViewById(R.id.tv_result);
         client = new AsyncHttpClient();
-    }
 
-    //Calls to get the recipes based on the query
-    public void handleFoodQuery(String query) throws UnsupportedEncodingException {
-        String strUrl = getString(R.string.YUMMLY_SEARCH_RECIPE_API);
-        String apiId = getString(R.string.YUMMLY_APP_ID);
-        String apiKey = getString(R.string.YUMMLY_API_KEY);
-
-
-        RequestParams params = new RequestParams();
-        params.put("_app_id", apiId);
-        params.put("_app_key", apiKey);
-        params.put("q", query);
-
-        client.get(strUrl, params, new JsonHttpResponseHandler(){
+        mResult.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                d("DEBUG",response.toString());
-
-                JSONObject recipeJsonResult = null;
-                try{
-                    //then retrieves the first result and makes the call using the first recipe's recipe id
-                    getRecipeForNutrition(response.getJSONArray("matches").getJSONObject(1).getString("id"));
-                }
-                catch(JSONException e){
-                    e.printStackTrace();
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-            }
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                d("onFailure: ", "" + throwable.toString());
-            }
-
-        });
-    }
-
-    public void getRecipeForNutrition(String id) throws UnsupportedEncodingException {
-
-        StringBuilder strUrl = new StringBuilder(getString(R.string.YUMMLY_GET_RECIPE_API));
-        strUrl.append("/").append(id);
-        String apiId = getString(R.string.YUMMLY_APP_ID);
-        String apiKey = getString(R.string.YUMMLY_API_KEY);
-
-
-        RequestParams params = new RequestParams();
-        params.put("_app_id", apiId);
-        params.put("_app_key", apiKey);
-        client.get(strUrl.toString(), params, new JsonHttpResponseHandler(){
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("getNutritionresponse:",response.toString());
-                recipe = Recipe.fromJSONObject(response);
-                /*Intent i = new Intent(AddMealActivity.this, SearchRecipeActivity.class);
-                i.putExtra("getRecipe", Parcels.wrap(recipe));
-                startActivity(i);*/
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable t, JSONObject json) {
-                d("onFailure: ", "" + statusCode);
-                d("onFailure: ", "" + json);
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                d("onSuccess: ", "" + response.toString());
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                d("onFailure: ", "" + errorResponse.toString());
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                d("onFailure: ", "" + throwable.toString());
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                d("onSuccess: ", "" + responseString);
+            public void onClick(View v) {
+                Intent i = new Intent(AddMealActivity.this, SearchRecipeActivity.class);
+                i.putExtra("recipeQuery", mResult.getText());
+                startActivity(i);
             }
         });
     }
-
 
     private void promptSpeechInput() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -163,15 +85,9 @@ public class AddMealActivity extends AppCompatActivity {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     mResult.setText(result.get(0));
-                    try {
-                        handleFoodQuery(result.get(0));
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
                 }
                 break;
             }
-
         }
     }
 }

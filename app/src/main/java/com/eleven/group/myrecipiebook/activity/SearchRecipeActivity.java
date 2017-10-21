@@ -40,6 +40,7 @@ public class SearchRecipeActivity extends AppCompatActivity{
 
     Recipe recipe;
     String query;
+    String recipeQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class SearchRecipeActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
         recipe = Parcels.unwrap(getIntent().getParcelableExtra("getRecipe"));
+        recipeQuery = getIntent().getStringExtra("recipeQuery");
         setupViews();
     }
 
@@ -106,7 +108,7 @@ public class SearchRecipeActivity extends AppCompatActivity{
         }
         else if(id == R.id.macros){
             Intent i = new Intent(SearchRecipeActivity.this, MacrosCalculation.class);
-            i.putExtra("macroRecipe", Parcels.wrap(recipe));
+            i.putExtra("recipeQuery", recipeQuery);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

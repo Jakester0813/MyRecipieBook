@@ -1,11 +1,10 @@
 package com.eleven.group.myrecipiebook.model;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
-import java.util.ArrayList;
-
+@Parcel
 public class Nutrition {
     private String attribute;
     private Double value;
