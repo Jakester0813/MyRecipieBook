@@ -18,6 +18,15 @@ public class Recipe {
     private int numberOfServings;
     private double rating;
     private ArrayList<String> ingredients;
+    private ArrayList<Nutrition> nutritionEstimates;
+
+    public ArrayList<Nutrition> getNutritionEstimates() {
+        return nutritionEstimates;
+    }
+
+    public void setNutritionEstimates(ArrayList<Nutrition> nutritionEstimates) {
+        this.nutritionEstimates = nutritionEstimates;
+    }
 
     public String getDetailRecipeName() {
         return detailRecipeName;
@@ -88,6 +97,18 @@ public class Recipe {
             } catch (JSONException e) {
                 // Log.d("Exceptiop", "");
             }
+
+            this.nutritionEstimates = new ArrayList<Nutrition>();
+            try {
+                JSONArray arr = jsonObject.getJSONArray("nutritionEstimates");
+                Log.d("Recipe nutritions: ", arr.toString());
+                for (int i = 0; i < arr.length(); i++) {
+                    this.nutritionEstimates.add(new Nutrition(arr.getJSONObject(i)));
+                }
+            } catch (JSONException e) {
+                // Log.d("Exceptiop", "");
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
