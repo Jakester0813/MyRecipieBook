@@ -1,5 +1,6 @@
 package com.eleven.group.myrecipiebook.activity;
 
+import android.renderscript.Double2;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -67,12 +68,12 @@ public class CalorieCalculator extends AppCompatActivity {
                 Log.d("radioGenderButton: ", radioGenderButton.getText().toString());
 
                 if(radioGenderButton.getText().toString().equals("Male")){
-                    menBMR = (10*Integer.parseInt(weight.getText().toString())) +
-                            (6.25*Integer.parseInt(height.getText().toString())) - (5*age) + 5;
+                    menBMR = (10* Double.parseDouble(weight.getText().toString())) +
+                            (6.25*Double.parseDouble(height.getText().toString())) - (5*age) + 5;
                     calories.setText(Double.toString(menBMR));
                 }
                 else if(radioGenderButton.getText().toString().equals("Female")){
-                    womenBMR = (10*Integer.parseInt(weight.getText().toString())) + (6.25*Integer.parseInt(height.getText().toString())) - (5*age) - 161;
+                    womenBMR = (10*Double.parseDouble(weight.getText().toString())) + (6.25*Double.parseDouble(height.getText().toString())) - (5*age) - 161;
                     calories.setText(Double.toString(womenBMR));
                 }
             }
