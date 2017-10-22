@@ -57,9 +57,9 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="130dp"
+        android:layout_width="137dp"
         android:layout_height="wrap_content"
-        android:text="Lunch"
+        android:text="Meals"
         android:textColor="#A0C4F3"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:background="#4974AC"
@@ -69,9 +69,9 @@
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="130dp"
+        android:layout_width="137dp"
         android:layout_height="wrap_content"
-        android:text="Breakfast"
+        android:text="Snacks"
         android:textColor="#B6E5F9"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:background="#45A6D0"
@@ -80,7 +80,7 @@
 
     <Button
         android:id="@+id/btn_camera"
-        android:layout_width="130dp"
+        android:layout_width="137dp"
         android:layout_height="wrap_content"
         android:text="Camera"
         android:textColor="#80A5E9"
