@@ -31,8 +31,8 @@ The following user stories must be completed:
 * [ ] Ask users about weight and height to calculate their daily maximum calories (Hima)
 * [x] Users must be able to speak their daily meals using in built microphone (Jake)
 * [ ] Calculate differnt macros and calories for that day using the audio input (Hima)
-* [ ] Use Camera to take picture of the recipe (Sid)
-* [ ] Share the picture of recipe with friends (Jake)
+* [x] Use Camera to take picture of the recipe (Sid)
+* [x] Share the picture of recipe with friends (Jake)
 * [x] Clickable recepie pictures (Hima)
 * [x] Detailed recepie in next activity (Hima)
 * [x] Able to go back on Home Activity at any time (Jake)
@@ -41,9 +41,9 @@ The following additional stories must also be completed:
 
 * [x] User should be able to share the recepie with the message icon (Jake)
 * [x] Differentiate recepies into breakfast, lunch, snack and dinner (Sid)
-* [ ] Sign In Logo Activity (email and password) (Sid)
-* [ ] Sign Up activity (Full name, email and Password) (Hima)
-* [ ] Splash Screen (Jake)
+* [x] Sign In Logo Activity (email and password) (Jake)
+* [x] Sign Up activity (Full name, email and Password) (Hima)
+* [x] Splash Screen (Jake)
 * [ ] Add My Recipies Activity for users to access their recipes (Sid)
 * [ ] Storing recipes in the database (Sid & Hima)
 

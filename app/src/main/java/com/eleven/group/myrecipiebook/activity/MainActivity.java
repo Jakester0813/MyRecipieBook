@@ -14,17 +14,21 @@ import com.eleven.group.myrecipiebook.fragment.DualPaneFragment;
 import com.eleven.group.myrecipiebook.fragment.GridFragment;
 import com.eleven.group.myrecipiebook.fragment.ListFragment;
 import com.eleven.group.myrecipiebook.fragment.ViewPagerFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 //Sid testing
 public class MainActivity extends AppCompatActivity
         implements ListFragment.OnRecipeSelectedInterface, GridFragment.OnRecipeSelectedInterface {
     public static final String LIST_FRAGMENT = "list_fragment";
     public static final String VIEW_PAGER_FRAGMENT = "viewpager_fragment";
-    Button btnRecipe, btnAddMeal,btnCamera;
+    Button btnRecipe, btnAddMeal, btnLogIn, btnSignOut, btnSignUp, btnCamera;
+    FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        auth = FirebaseAuth.getInstance();
 
             GridFragment savedFragment = (GridFragment) getSupportFragmentManager().findFragmentByTag(LIST_FRAGMENT);
 
@@ -55,6 +59,38 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        btnSignUp = (Button) findViewById(R.id.btn_sign_up);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, SignUp.class);
+                startActivity(i);
+            }
+        });
+
+
+
+        btnLogIn = (Button) findViewById(R.id.btn_log_in);
+        btnLogIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, SignInActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnSignOut = (Button) findViewById(R.id.btn_sign_out);
+        btnSignOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(auth.getCurrentUser() != null){
+                    auth.signOut();
+                    btnSignOut.setVisibility(View.GONE);
+                    btnLogIn.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         btnCamera = (Button) findViewById(R.id.btn_camera);
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +99,20 @@ public class MainActivity extends AppCompatActivity
                 startActivity(i);
             }
         });
-
-
     } // onCreate()
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(auth.getCurrentUser() != null){
+            btnSignOut.setVisibility(View.VISIBLE);
+            btnLogIn.setVisibility(View.GONE);
+        }
+        else {
+            btnSignOut.setVisibility(View.GONE);
+            btnLogIn.setVisibility(View.VISIBLE);
+        }
+    }
 
     @Override
     public void onListRecipeSelected(int index) {
@@ -105,4 +152,10 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.menu_search, menu);
         return true;
     }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+    }
+
 } // MainActivity

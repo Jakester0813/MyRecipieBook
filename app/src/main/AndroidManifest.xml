@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eleven.group.myrecipiebook">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MyRecipieBookApplication"
         android:allowBackup="true"
@@ -10,13 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:noHistory="true"
+            android:theme="@style/AppTheme.NoActionBarSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.Camera2Activity" />
         <meta-data
             android:name="io.fabric.ApiKey"
@@ -32,12 +38,17 @@
         <activity android:name=".activity.MacrosCalculation" />
         <activity
             android:name=".activity.AddMealActivity"
-            android:noHistory="true"/>
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.VOICE" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SignInActivity"
+            android:label="@string/title_activity_sign_in"></activity>
+        <activity android:name=".activity.SignUp"></activity>Of
     </application>
 
 </manifest>
