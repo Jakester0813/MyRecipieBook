@@ -17,11 +17,4 @@
         android:icon="@drawable/calculator_icon"
         app:showAsAction="always|collapseActionView" />
 
-    <item
-        android:id="@+id/macros"
-        android:orderInCategory="300"
-        android:title="Macros"
-        android:icon="@drawable/macros_count"
-        app:showAsAction="always|collapseActionView" />
-
 </menu>

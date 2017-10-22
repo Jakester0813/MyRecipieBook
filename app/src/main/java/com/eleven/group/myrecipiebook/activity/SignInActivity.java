@@ -59,8 +59,6 @@ public class SignInActivity extends AppCompatActivity{
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +73,9 @@ public class SignInActivity extends AppCompatActivity{
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    if(isEmailValid(mEmailView.getText().toString()) && isPasswordValid(mPasswordView.getText().toString())) {
+                        attemptLogin();
+                    }
                     return true;
                 }
                 return false;
@@ -86,12 +86,20 @@ public class SignInActivity extends AppCompatActivity{
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                if(isEmailValid(mEmailView.getText().toString()) && isPasswordValid(mPasswordView.getText().toString())) {
+                    attemptLogin();
+                }
+                if(!isEmailValid(mEmailView.getText().toString()) && isPasswordValid(mPasswordView.getText().toString())){
+                    Toast.makeText(SignInActivity.this,"Your email is invalid and password is less than 6 characters", Toast.LENGTH_SHORT).show();
+                }
+                else if(!isEmailValid(mEmailView.getText().toString())){
+                    Toast.makeText(SignInActivity.this,"Email address is invalid", Toast.LENGTH_SHORT).show();
+                }
+                else if(!isPasswordValid(mPasswordView.getText().toString())){
+                    Toast.makeText(SignInActivity.this,"Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
     }
 
     public void onStart() {
@@ -137,6 +145,14 @@ public class SignInActivity extends AppCompatActivity{
         if(user != null){
             mEmailView.setText(user.getEmail());
         }
+    }
+
+    public boolean isEmailValid(String email){
+        return email.contains("@");
+    }
+
+    public boolean isPasswordValid(String password){
+        return password.length() >= 6;
     }
 
 }

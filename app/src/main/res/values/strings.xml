@@ -27,6 +27,8 @@
     <string name="title_activity_main">Camera</string>
     <string name="title_activity_no_camera">No Camera</string>
     <string name="delete">Delete</string>
+    <string name="password_hint">Must be at least 6 characters long</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

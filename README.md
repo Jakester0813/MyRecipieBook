@@ -28,9 +28,9 @@ The following **required** functionality is completed:
 The following user stories must be completed:
 
 * [x] Home Activity with clickable contents (Sid)
-* [ ] Ask users about weight and height to calculate their daily maximum calories (Hima)
+* [X] Ask users about weight and height to calculate their daily maximum calories (Hima)
 * [x] Users must be able to speak their daily meals using in built microphone (Jake)
-* [ ] Calculate differnt macros and calories for that day using the audio input (Hima)
+* [X] Calculate differnt macros and calories for that day using the audio input (Hima)
 * [x] Use Camera to take picture of the recipe (Sid)
 * [x] Share the picture of recipe with friends (Jake)
 * [x] Clickable recepie pictures (Hima)
@@ -45,7 +45,6 @@ The following additional stories must also be completed:
 * [x] Sign Up activity (Full name, email and Password) (Hima)
 * [x] Splash Screen (Jake)
 * [ ] Add My Recipies Activity for users to access their recipes (Sid)
-* [ ] Storing recipes in the database (Sid & Hima)
 
 
 ## Video Walkthrough

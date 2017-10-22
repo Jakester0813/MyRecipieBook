@@ -18,7 +18,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import static com.eleven.group.myrecipiebook.R.id.macros;
 import static com.eleven.group.myrecipiebook.R.id.radioGroup;
 
 public class SignUp extends AppCompatActivity {
@@ -50,22 +49,47 @@ public class SignUp extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                        .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(SignUp.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(SignUp.this, "Sign up FAILED", Toast.LENGTH_SHORT).show();
-
-                                }
-
-                                // ...
-                            }
-                        });
+                if(isEmailValid(email.getText().toString()) && isPasswordValid(password.getText().toString())) {
+                    attemptSignUp();
+                }
+                if(!email.getText().toString().contains("@") && password.length() < 6){
+                    Toast.makeText(SignUp.this,"Your email is invalid and password is less than 6 characters", Toast.LENGTH_SHORT).show();
+                }
+                else if(!email.getText().toString().contains("@")){
+                    Toast.makeText(SignUp.this,"Email address is invalid", Toast.LENGTH_SHORT).show();
+                }
+                else if(password.length() < 6){
+                    Toast.makeText(SignUp.this,"Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    public boolean isEmailValid(String email){
+        return email.contains("@");
+    }
+
+    public boolean isPasswordValid(String password){
+        return password.length() >= 6;
+    }
+
+    public void attemptSignUp(){
+        mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                .addOnCompleteListener(SignUp.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(SignUp.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(SignUp.this, "Sign up FAILED", Toast.LENGTH_SHORT).show();
+                            Log.d("Fail", task.getException().toString());
+
+                        }
+
+                        // ...
+                    }
+                });
+
     }
 }
