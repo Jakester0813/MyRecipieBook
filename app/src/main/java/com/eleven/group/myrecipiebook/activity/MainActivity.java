@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity
         implements ListFragment.OnRecipeSelectedInterface, GridFragment.OnRecipeSelectedInterface {
     public static final String LIST_FRAGMENT = "list_fragment";
     public static final String VIEW_PAGER_FRAGMENT = "viewpager_fragment";
-    Button btnRecipe, btnAddMeal, btnLogIn, btnSignOut, btnSignUp, btnCamera;
+    Button btnRecipe, btnAddMeal, btnLogIn, btnSignOut, btnSignUp, btnCamera,btnSnacks, btnMeal;
     FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +99,25 @@ public class MainActivity extends AppCompatActivity
                 startActivity(i);
             }
         });
+
+        btnSnacks = (Button) findViewById(R.id.btnSnacks);
+        btnSnacks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, SnacksGridActivity.class);
+                startActivity(i);
+            }
+        });
+
+        btnMeal = (Button) findViewById(R.id.btnMeal);
+        btnMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, MealGridActivity.class);
+                startActivity(i);
+            }
+        });
+
     } // onCreate()
 
     @Override
