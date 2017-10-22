@@ -106,11 +106,6 @@ public class SearchRecipeActivity extends AppCompatActivity{
             Intent i = new Intent(SearchRecipeActivity.this, CalorieCalculator.class);
             startActivity(i);
         }
-        else if(id == R.id.macros){
-            Intent i = new Intent(SearchRecipeActivity.this, MacrosCalculation.class);
-            i.putExtra("recipeQuery", recipeQuery);
-            startActivity(i);
-        }
         return super.onOptionsItemSelected(item);
     }
 

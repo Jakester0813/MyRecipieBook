@@ -51,7 +51,7 @@ public class AddMealActivity extends AppCompatActivity {
         mResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(AddMealActivity.this, SearchRecipeActivity.class);
+                Intent i = new Intent(AddMealActivity.this, MacrosCalculation.class);
                 i.putExtra("recipeQuery", mResult.getText());
                 startActivity(i);
             }
