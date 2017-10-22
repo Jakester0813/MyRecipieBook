@@ -48,7 +48,7 @@
         <activity
             android:name=".activity.SignInActivity"
             android:label="@string/title_activity_sign_in"></activity>
-        <activity android:name=".activity.SignUp"></activity>
+        <activity android:name=".activity.SignUp"></activity>Of
     </application>
 
 </manifest>
