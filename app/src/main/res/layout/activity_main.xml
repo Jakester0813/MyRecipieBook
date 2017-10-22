@@ -12,10 +12,10 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/placeholder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
         tools:context="com.eleven.group.myrecipiebook.MainActivity"
-        android:layout_below="@+id/button2">
+        android:layout_below="@+id/btnMeal">
     </FrameLayout>
 
     <Button
@@ -56,19 +56,19 @@
         />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnMeal"
         android:layout_width="137dp"
         android:layout_height="wrap_content"
         android:text="Meals"
         android:textColor="#A0C4F3"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:background="#4974AC"
-        android:layout_alignBaseline="@+id/button4"
-        android:layout_alignBottom="@+id/button4"
-        android:layout_toEndOf="@+id/button4" />
+        android:layout_alignBaseline="@+id/btnSnacks"
+        android:layout_alignBottom="@+id/btnSnacks"
+        android:layout_toEndOf="@+id/btnSnacks" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnSnacks"
         android:layout_width="137dp"
         android:layout_height="wrap_content"
         android:text="Snacks"
@@ -86,8 +86,8 @@
         android:textColor="#80A5E9"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:background="#26466D"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
+        android:layout_alignBaseline="@+id/btnMeal"
+        android:layout_alignBottom="@+id/btnMeal"
         android:layout_alignParentEnd="true" />
 
     <Button
@@ -112,6 +112,14 @@
         android:layout_alignBaseline="@+id/btn_log_in"
         android:layout_alignBottom="@+id/btn_log_in"
         android:layout_toEndOf="@+id/btn_log_in" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/logo_background"
+        android:layout_below="@+id/placeholder"
+        android:layout_toEndOf="@+id/placeholder" />
 
 
 </RelativeLayout>

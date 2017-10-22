@@ -18,7 +18,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import static com.eleven.group.myrecipiebook.R.id.macros;
 import static com.eleven.group.myrecipiebook.R.id.radioGroup;
 
 public class SignUp extends AppCompatActivity {
