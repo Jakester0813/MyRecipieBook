@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity
         btnCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, CameraMenuActivity.class);
+                Intent i = new Intent(MainActivity.this, Camera2Activity.class);
                 startActivity(i);
             }
         });

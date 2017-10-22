@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:name=".MyRecipieBookApplication"
         android:allowBackup="true"
@@ -24,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
-
+        <activity android:name=".activity.Camera2Activity" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="a3696b7a8b077ba97b9b261311022d30f3f607c4" />
@@ -39,10 +38,9 @@
         <activity android:name=".activity.MacrosCalculation" />
         <activity
             android:name=".activity.AddMealActivity"
-            android:noHistory="true">
+            android:noHistory="true"/>
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.VOICE" />
             </intent-filter>

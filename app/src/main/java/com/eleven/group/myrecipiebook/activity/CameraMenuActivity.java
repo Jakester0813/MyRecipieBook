@@ -1,254 +1,270 @@
 package com.eleven.group.myrecipiebook.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.hardware.Camera;
-import android.hardware.Camera.Size;
+import android.hardware.Camera.Parameters;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.FloatingActionButton;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.eleven.group.myrecipiebook.R;
 
 import java.io.File;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-/**
- * Created by siddhatapatil on 10/20/17.
- */
-
-@SuppressLint("NewApi")
 public class CameraMenuActivity extends Activity {
-	private int parentId = 3;
-	private Button btnVideoBrowse;
-	private Button btnImgBrowse;
-	private Button btnSetting;
-	
-	private List<Size> supportedPictureSizes = null;
-	private List<Size> supportedVideoSizes = null;
 
-	private Integer videoWidth;
-	private Integer videoHeight;
+    private Camera mCamera;
+    private Parameters cameraParameters;
+    private CameraActivity mPreview;
+    private ImageView imageView;
+    private GestureDetector gestureDetector;
+    private int cameraId = 0;
 
-	private Integer pictureWidth;
-	private Integer pictureHeight;
-	
-	static SharedPreferences settings;
-	static SharedPreferences.Editor editor;
+    private String mostRecentImage;
 
-	/** Called when the activity is first created. */
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_camera);
-		//btnImgBrowse = (Button) findViewById(R.id.arc_hf_img_btnGridShow);
-		//btnImgBrowse.setOnClickListener(new btnListener());
+    public static final int MEDIA_TYPE_IMAGE = 1;
+    public static final int MEDIA_TYPE_VIDEO = 2;
 
-		//Button btnVideo = (Button) findViewById(R.id.btnVideo);
-		//btnVideo.setOnClickListener(new btnListener());
-		
-		//Button btnImg = (Button) findViewById(R.id.btnImg);
-		//btnImg.setOnClickListener(new btnListener());
+    private final String TAG = CameraMenuActivity.class.getSimpleName();
 
-		//btnVideoBrowse = (Button) findViewById(R.id.arc_hf_video_btnVideoBrowse);
-		//btnVideoBrowse.setOnClickListener(new btnListener());
-		//showVideoCount();
-		//showImgCount();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_camera);
 
-		//btnSetting = (Button) findViewById(R.id.arc_hf_btnSetting);
-		//btnSetting.setOnClickListener(new btnListener());
-		
-    	//int modeWorldWriteable = MODE_PRIVATE;
-		//settings = this.getPreferences(modeWorldWriteable);
+        mostRecentImage = getMostRecentImage();
+        imageView = (ImageView) findViewById(R.id.image);
+        if (!TextUtils.isEmpty(mostRecentImage)) {
+            Glide.with(this)
+                    .load(mostRecentImage)
+                    .into(imageView);
+        }
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MyRecipeFilesActivity.class);
+                startActivity(intent);
+            }
+        });
 
-		//supportedPictureSizes = new ArrayList<Camera.Size>();
-		//supportedPictureSizes.add(Camera.Size)
-		//supportedVideoSizes = new ArrayList<Camera.Size>();
-		/*
-		if (supportedPictureSizes == null) {
-			Camera camera = Camera.open();
-			Camera.Parameters parameters = camera.getParameters();
-			supportedPictureSizes = parameters.getSupportedPictureSizes();
-			supportedVideoSizes = parameters.getSupportedVideoSizes();
-			pictureWidth = settings.getInt("pictureWidth", Util.getMaxSize(supportedPictureSizes).width);
-			pictureHeight = settings.getInt("pictureHeight", Util.getMaxSize(supportedPictureSizes).height);
-			videoWidth = settings.getInt("videoWidth", Util.getMaxSize(supportedVideoSizes).width);
-			videoHeight = settings.getInt("videoHeight", Util.getMaxSize(supportedVideoSizes).height);
-			camera.release();
-			camera = null;
-		}*/
-	}
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
-	class btnListener implements OnClickListener {
-		@Override
-		public void onClick(View v) {
-			switch (v.getId()) {
-			case R.id.imageIcon:
-				imgShow();
-				break;
-			case R.id.btn_video_start:
-				startRecorder();
-				break;
-				
-			case R.id.btnImg:
-				startPhoto();
-				break;
-				
-			case R.id.btnVideo:
-				videoShow();
-				break;
-			case R.id.btnSetting:
-				startSetting();
-				break;
-			default:
-				break;
-			}
-		}
+        gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                releaseCamera();
 
-	}
+                cameraId = cameraId == 1 ? 0 : 1;
 
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		switch (requestCode) {
-		case 1:
-			showImgCount();
-			break;
-		case 2:
-			showImgCount();
-			break;
-		case 3:
-			showVideoCount();
-			break;
-		case 4:
-			showImgCount();
-			break;
-		case 5:
-			showVideoCount();
-			break;
-		case 6:
-			if (resultCode == RESULT_OK) {
-				pictureWidth = data.getIntExtra("pictureWidth", -1);
-				pictureHeight = data.getIntExtra("pictureHeight", -1);
-				videoWidth = data.getIntExtra("videoWidth", -1);
-				videoHeight = data.getIntExtra("videoHeight", -1);
-				
-				if (pictureWidth<0 || pictureHeight<0 || videoWidth<0 || videoHeight<0) {
-					showMsg("Invalid Size: pictureSize " + pictureWidth + "x" + pictureHeight + ", videoSize " + videoWidth + "x" + videoHeight);
-					return ;
-				}
-				
-				editor = settings.edit();
-				editor.putInt("pictureWidth", pictureWidth);
-				editor.putInt("pictureHeight", pictureHeight);
-				editor.putInt("videoWidth", videoWidth);
-				editor.putInt("videoHeight", videoHeight);
-				editor.apply();
-				editor.commit();
-			}
-			break;
-		default:
-			break;
-		}
-	}
+                initializeCamera();
 
-	private Toast toast;
-	private String videoPath;
-	private String imgPath;
+                return true;
+            }
+        });
+    }
 
-	public void showMsg(String arg) {
-		if (toast == null) {
-			toast = Toast.makeText(this, arg, Toast.LENGTH_SHORT);
-		} else {
-			toast.cancel();
-			toast.setText(arg);
-		}
-		toast.show();
-	}
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (gestureDetector.onTouchEvent(event))
+            return true;
+        return super.onTouchEvent(event);
+    }
 
-	public void imgShow() {
-		Intent intent = new Intent();
-		intent.putExtra("path", imgPath);
-		intent.setClass(this, MyRecipeFilesActivity.class);
-		startActivityForResult(intent, 2);
-	}
+    public String getMostRecentImage() {
+        String imagePath = "";
+        File dir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "MyRecipeBook");
 
-	private void showImgCount() {
-		imgPath = Environment.getExternalStorageDirectory().getAbsolutePath()
-				+ "/FACameraDemo/img/" + String.valueOf(parentId) + "/";
-		File file = new File(imgPath);
-		if (!file.exists()) {
-			file.mkdirs();
-		}
-		File[] files = file.listFiles();
-		int fileCount = files.length;
-		if (fileCount == 0) {
-			btnImgBrowse.setEnabled(false);
-		} else {
-			btnImgBrowse.setEnabled(true);
-		}
-		btnImgBrowse.setText("Photos(" + fileCount + ")");
-	}
+        if(dir.exists() && dir.isDirectory()) {
+            if(dir.listFiles().length > 0) {
+                imagePath = dir.listFiles()[0].getAbsolutePath();
+            }
+        }
 
-	public void startRecorder() {
-		Intent intent = new Intent();
-		intent.setClass(CameraMenuActivity.this, CameraActivity.class);
-		intent.putExtra("parentId", parentId);
-		intent.putExtra("mode", "video");
-		intent.putExtra("pictureWidth", pictureWidth);
-		intent.putExtra("pictureHeight", pictureHeight);
-		intent.putExtra("videoWidth", videoWidth);
-		intent.putExtra("videoHeight", videoHeight);
-		startActivityForResult(intent, 3);
-	}
-	
-	public void startPhoto() {
-		Intent intent = new Intent();
-		intent.setClass(CameraMenuActivity.this, CameraActivity.class);
-		intent.putExtra("parentId", parentId);
-		intent.putExtra("mode", "img");
-		intent.putExtra("pictureWidth", pictureWidth);
-		intent.putExtra("pictureHeight", pictureHeight);
-		intent.putExtra("videoWidth", videoWidth);
-		intent.putExtra("videoHeight", videoHeight);
-		startActivityForResult(intent, 4);
-	}
+        return imagePath;
+    }
 
-	public void videoShow() {
-		Intent intent = new Intent();
-		intent.putExtra("path", videoPath);
-		intent.setClass(CameraMenuActivity.this, MyRecipeFilesActivity.class);
-		startActivityForResult(intent, 5);
-	}
-	
-	public void startSetting() {
-		Intent intent = new Intent();
-		intent.setClass(CameraMenuActivity.this, SettingActivity.class);
-		intent.putExtra("pictureWidth", pictureWidth);
-		intent.putExtra("pictureHeight", pictureHeight);
-		intent.putExtra("videoWidth", videoWidth);
-		intent.putExtra("videoHeight", videoHeight);
-		startActivityForResult(intent, 6);
-	}
+    public void initializeCamera() {
+        if(mCamera == null) {
+            // Create an instance of Camera
+            mCamera = getCameraInstance(cameraId);
 
-	public void showVideoCount() {
-		videoPath = Environment.getExternalStorageDirectory().getAbsolutePath()
-				+ "/FACameraDemo/video/" + String.valueOf(parentId) + "/";
-		File file = new File(videoPath);
-		if (!file.exists()) {
-			file.mkdirs();
-		}
-		File[] files = file.listFiles();
-		int fileCount = files.length;
-		if (fileCount == 0) {
-			btnVideoBrowse.setEnabled(false);
-		} else {
-			btnVideoBrowse.setEnabled(true);
-		}
-		btnVideoBrowse.setText("Videos(" + fileCount + ")");
-	}
+            if (mCamera == null) {
+                Intent intent = new Intent(this, NoCameraActivity.class);
+                startActivity(intent);
+            }
+
+            // Create our Preview view and set it as the content of our activity.
+            FrameLayout preview = (FrameLayout) findViewById(R.id.camera_preview);
+            preview.removeAllViews();
+
+            if (mPreview == null) {
+                mPreview = new CameraActivity(this, mCamera, cameraId);
+                preview.addView(mPreview);
+            } else {
+                mPreview.setCamera(mCamera, cameraId);
+                // this will trigger a surface changed
+                preview.addView(mPreview);
+            }
+
+            // Add a listener to the Capture button
+            FloatingActionButton captureButton = (FloatingActionButton) findViewById(R.id.button_capture);
+            captureButton.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // get an image from the camera
+                            mCamera.takePicture(null, null, jpegCallback);
+                        }
+                    }
+            );
+
+        }
+    }
+
+    public Camera getCameraInstance(int id) {
+        if (mCamera != null) {
+            return mCamera;
+        } else {
+            try {
+                mCamera = Camera.open(id); // attempt to get a Camera instance
+                return mCamera; // returns null if camera is unavailable
+            } catch (Exception e) {
+                // Camera is not available (in use or does not exist)
+            }
+            return null;
+         }
+    }
+
+    /** Create a file Uri for saving an image or video */
+    private static Uri getOutputMediaFileUri(int type){
+        return Uri.fromFile(getOutputMediaFile(type));
+    }
+
+    /** Create a File for saving an image or video */
+    private static File getOutputMediaFile(int type){
+        // To be safe, you should check that the SDCard is mounted
+        // using Environment.getExternalStorageState() before doing this.
+
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "MyRecipeBook");
+        // This location works best if you want the created images to be shared
+        // between applications and persist after your app has been uninstalled.
+
+        // Create the storage directory if it does not exist
+        if (! mediaStorageDir.exists()){
+            if (! mediaStorageDir.mkdirs()){
+                Log.d("MyCameraApp", "failed to create directory");
+                return null;
+            }
+        }
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile;
+        if (type == MEDIA_TYPE_IMAGE){
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                    "IMG_"+ timeStamp + ".jpg");
+
+        } else if(type == MEDIA_TYPE_VIDEO) {
+            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+                    "VID_"+ timeStamp + ".mp4");
+        } else {
+            return null;
+        }
+
+        return mediaFile;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        releaseCamera();              // release the camera immediately on pause event
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initializeCamera();
+    }
+
+    private void releaseCamera(){
+        if (mCamera != null){
+            mCamera.stopPreview();
+            mCamera.release();        // release the camera for other applications
+            mCamera = null;
+        }
+    }
+
+    final Camera.PictureCallback jpegCallback = new Camera.PictureCallback() {
+
+        @Override
+        public void onPictureTaken(byte[] data, Camera camera) {
+            camera.startPreview();
+            new SaveTask(getApplicationContext(), imageView).execute(data);
+        }
+    };
+
+    public class SaveTask extends AsyncTask<byte[], String, File> {
+        Context context;
+        ImageView imageView;
+
+        public SaveTask(Context context, ImageView imageView) {
+            this.context = context;
+            this.imageView = imageView;
+        }
+        @Override
+        protected File doInBackground(byte[]... data) {
+
+            File pictureFile = getOutputMediaFile(MEDIA_TYPE_IMAGE);
+            if (pictureFile == null){
+                Log.d(TAG, "Error creating media file, check storage permissions: ");
+                return null;
+            }
+
+            try {
+                FileOutputStream fos = new FileOutputStream(pictureFile);
+                fos.write(data[0]);
+                fos.close();
+
+                return pictureFile;
+
+            } catch (FileNotFoundException e) {
+                Log.d(TAG, "File not found: " + e.getMessage());
+            } catch (IOException e) {
+                Log.d(TAG, "Error accessing file: " + e.getMessage());
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(File file) {
+            Glide.with(context)
+                    .load(file)
+                    .into(imageView);
+
+            super.onPostExecute(file);
+        }
+    }
 }

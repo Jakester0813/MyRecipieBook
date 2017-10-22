@@ -24,7 +24,9 @@
     <string name="videoSizeText">Video Size</string>
     <string name="btnSave">Save</string>
     <string name="title_activity_sign_in">Sign in</string>
-
+    <string name="title_activity_main">Camera</string>
+    <string name="title_activity_no_camera">No Camera</string>
+    <string name="delete">Delete</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

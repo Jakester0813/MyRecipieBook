@@ -1,219 +1,132 @@
 package com.eleven.group.myrecipiebook.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.ThumbnailUtils;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore.Video;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Environment;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.eleven.group.myrecipiebook.R;
 
 import java.io.File;
-
-/**
- * Created by siddhatapatil on 10/20/17.
- */
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyRecipeFilesActivity extends Activity {
 
-	private static final int MENU_DELETE = Menu.FIRST;
-	private static final int MENU_RENAME = Menu.FIRST + 1;
-	private File[] files;
-	private String[] names;
-	private String[] paths;
-	private GridView fileGrid;
-	private BaseAdapter adapter = null;
-	private String path;
-	private EditText etRename;
-	private File file;
+    List<String> imagePaths;
+    GridView imageGrid;
+    ImageAdapter imageAdapter;
+    public static int IMAGE_DELETED = 1;
+    public static int REQUEST_NULL = 0;
 
-	protected void onCreate(Bundle icicle) {
-		super.onCreate(icicle);
-		setContentView(R.layout.activity_store_camera);
-		path = getIntent().getStringExtra("path");
-		File file = new File(path);
-		files = file.listFiles();
-		fileGrid = (GridView) findViewById(R.id.file_show);
-		adapter = new fileAdapter(this);
-		fileGrid.setAdapter(adapter);
-		showFileItems();
-		fileGrid.setOnItemClickListener(new OnItemClickListener() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_camera_setting);
 
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				File f = new File(paths[arg2]);
-				Intent intent = new Intent();
-				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				intent.setAction(Intent.ACTION_VIEW);
-				String type = thisFileType(names[arg2]);
-				intent.setDataAndType(Uri.fromFile(f), type);
-				startActivity(intent);
-			}
-		});
+        imagePaths = getImages();
+    }
 
-		registerForContextMenu(fileGrid);
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
-		AdapterContextMenuInfo info = null;
+        imageGrid = (GridView) findViewById(R.id.gridview);
 
-		try {
-			info = (AdapterContextMenuInfo) menuInfo;
-		} catch (ClassCastException e) {
-			return;
-		}
-		menu.setHeaderTitle(names[info.position]);
-		menu.add(0, MENU_DELETE, 1, "Delete");
-		menu.add(0, MENU_RENAME, 2, "Rename");
-	}
-	
-	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
-				.getMenuInfo();
-		File file = new File(paths[info.position]);
-		switch (item.getItemId()) {
-		case MENU_DELETE:
-			file.delete();
-			showFileItems();
-			return true;
-		case MENU_RENAME:
-			fileRename(file);
-			return true;
-		default:
-			return super.onContextItemSelected(item);
-		}
-	}
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
 
-	private void showFileItems() {
-		File file = new File(path);
-		files = file.listFiles();
-		int count = files.length;
-		names = new String[count];
-		paths = new String[count];
-		for (int i = 0; i < count; i++) {
-			File f = files[i];
-			names[i] = f.getName();
-			paths[i] = f.getPath();
-		}
-		adapter.notifyDataSetChanged();
-	}
+        int windowWidth = Math.round(displayMetrics.widthPixels);
+        int columnWidth = ( windowWidth / 3 );
+        imageGrid.setColumnWidth(columnWidth);
 
-	public static String thisFileType(String name) {
-		String type = "";
-		String end = name.substring(name.lastIndexOf(".") + 1, name.length())
-				.toLowerCase();
-		if (end.equals("jpg")) {
-			type = "image";
-		} else if (end.equals("3gp")) {
-			type = "video";
-		} else {
-			type = "*";
-		}
-		type += "/*";
-		return type;
-	}
+        imageAdapter = new ImageAdapter(imagePaths, this, columnWidth);
+        imageGrid.setAdapter(imageAdapter);
+    }
 
-	private void fileRename(File file) {
-		this.file = file;
-		View view = getLayoutInflater().inflate(R.layout.activity_image_rename, null);
-		etRename = (EditText) view.findViewById(R.id.file_rename);
-		new AlertDialog.Builder(this).setView(view)
-				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+    public List<String> getImages() {
+        List<String> images = new ArrayList<>();
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						String newName = etRename.getText().toString().trim();
-						File newFile = new File(path, newName);
-						if (newFile.exists()) {
-							showMsg(newName + "has been used");
-						} else
-							MyRecipeFilesActivity.this.file.renameTo(newFile);
-						showFileItems();
-					}
-				}).setNegativeButton("Cancel", null).show();
-	}
+        File dir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "NicoleCameraApp");
 
-	private Toast toast;
-	public void showMsg(String arg) {
-		if (toast == null) {
-			toast = Toast.makeText(this, arg, Toast.LENGTH_SHORT);
-		} else {
-			toast.cancel();
-			toast.setText(arg);
-		}
-		toast.show();
-	}
+        if(dir.exists() && dir.isDirectory()) {
+            for (File f: dir.listFiles()) {
+                images.add(f.getAbsolutePath());
+            }
+        }
 
-	class fileAdapter extends BaseAdapter {
-		Context context;
+        return images;
+    }
 
-		public fileAdapter(Context context) {
-			this.context = context;
-		}
+    public class ImageAdapter extends BaseAdapter {
 
-		@Override
-		public int getCount() {
-			return files.length;
-		}
+        List<String> data;
+        Context context;
+        int width;
 
-		@Override
-		public Object getItem(int arg0) {
-			// return files[arg0];
-			return names[arg0];
-		}
+        public ImageAdapter(List<String> data, Context context, int width) {
+            this.data = data;
+            this.context = context;
+            this.width = width;
+        }
 
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
+        @Override
+        public int getCount() {
+            return data.size();
+        }
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			String type = thisFileType(names[position]);
-			convertView = getLayoutInflater().inflate(R.layout.activity_image,
-					null);
-			ImageView icon = (ImageView) convertView
-					.findViewById(R.id.file_icon);
-			TextView name = (TextView) convertView
-					.findViewById(R.id.file_name);
-			if (type.equals("video/*")) {
-				Bitmap videoIcon = ThumbnailUtils.createVideoThumbnail(
-						paths[position], Video.Thumbnails.MINI_KIND);
-				icon.setImageBitmap(videoIcon);
-			} else if (type.equals("image/*")) {
-				Bitmap bitmap = BitmapFactory.decodeFile(paths[position]);
-				Bitmap imgIcon = ThumbnailUtils.extractThumbnail(bitmap, 150,
-						120);
-				icon.setImageBitmap(imgIcon);
-			}
-			name.setText(names[position]);
-			return convertView;
-		}
-	}
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                // if it's not recycled, initialize some attributes
+                convertView = ((Activity) context).getLayoutInflater().inflate(R.layout.activity_video, parent, false);
+                convertView.setLayoutParams(new GridView.LayoutParams(width - 4, (int) Math.round(width * (.75)) - 4));
+                ((ImageView) convertView).setScaleType(ImageView.ScaleType.CENTER_CROP);
+            }
+            Glide.with(context)
+                    .load(data.get(position))
+                    .into((ImageView)convertView);
+
+            convertView.setTag(R.id.image_view_id, data.get(position));
+
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, SettingActivity.class);
+                    intent.putExtra(SettingActivity.IMAGE_PATH, (String) v.getTag(R.id.image_view_id));
+                    startActivityForResult(intent, REQUEST_NULL);
+                }
+            });
+
+            return convertView;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == IMAGE_DELETED) {
+            if (imageAdapter != null) {
+                imagePaths = getImages();
+                imageAdapter.notifyDataSetChanged();
+            }
+        }
+    }
 }

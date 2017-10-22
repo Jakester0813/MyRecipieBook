@@ -1,55 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:background="#2E1E61">
-    
-    <Button
-        android:id="@+id/imageIcon"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_margin="20dp"
-        android:textColor="#BFFCF4"
-        android:background="#51B8AB"
-        android:text="My Recipes"/>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/videoIcon"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_margin="20dp"
-        android:textColor="#A0C4F3"
-        android:text="My Recipe Videos"
-        android:background="#4974AC"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_camera"/>
 
-    <Button
-        android:id="@+id/btnImg"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_margin="20dp"
-        android:text="@string/btnImg"
-        android:textColor="#B6E5F9"
-        android:background="#45A6D0"/>
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp" />
 
-    <Button
-        android:id="@+id/btnVideo"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_margin="20dp"
-        android:text="@string/btnVideo"
-        android:background="#26466D"
-        android:textColor="#80A5E9"/>
-
-    <Button
-        android:id="@+id/btnSetting"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:layout_margin="20dp"
-        android:text="@string/btnSetting"
-        android:background="#943417"
-        android:textColor="#FAB28B"/>
-
-</LinearLayout>
+</RelativeLayout>
