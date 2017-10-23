@@ -1,4 +1,4 @@
-# Bon Appetit
+# My Recipe Book
 
 Submitted by: **Siddhata Patil**, **Jacob Rushing** and **Himavarshini Mittapally**
 
