@@ -51,8 +51,17 @@ The following additional stories must also be completed:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/nXZopV2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+Part 1: Recipes, Camera, Microphone and showing your macros:
+
+<img src='https://i.imgur.com/28XaHfC.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Part 2: Recipes search, viewing recipe, and MacroCalculator:
+
+<img src='https://i.imgur.com/tM1XgCY.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Part 3: Sign up and sign in:
+
+<img src='https://i.imgur.com/ndii3Vn.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
