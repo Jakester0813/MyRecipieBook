@@ -51,8 +51,17 @@ The following additional stories must also be completed:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/nXZopV2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+Part 1:
+
+<img src='https://i.imgur.com/28XaHfC.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Part 2:
+
+<img src='https://i.imgur.com/tM1XgCY.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Part 3:
+
+<img src='https://i.imgur.com/ndii3Vn.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
