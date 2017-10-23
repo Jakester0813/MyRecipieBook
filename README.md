@@ -2,7 +2,7 @@
 
 Submitted by: **Siddhata Patil**, **Jacob Rushing** and **Himavarshini Mittapally**
 
-Time spent: **24** hours spent in total.
+Time spent: **48** hours spent in total.
 
 
 Bon Appetit is a Food and Nutrition App.
@@ -40,11 +40,11 @@ The following user stories must be completed:
 The following additional stories must also be completed:
 
 * [x] User should be able to share the recepie with the message icon (Jake)
-* [x] Differentiate recepies into breakfast, lunch, snack and dinner (Sid)
+* [x] Differentiate recepies into snacks and dinner(Sid)
+* [x] Clickable recipe contents with ingredients and directions in the next activity with a checkbox functionality(Sid)
 * [x] Sign In Logo Activity (email and password) (Jake)
 * [x] Sign Up activity (Full name, email and Password) (Hima)
 * [x] Splash Screen (Jake)
-* [ ] Add My Recipies Activity for users to access their recipes (Sid)
 
 
 ## Video Walkthrough
