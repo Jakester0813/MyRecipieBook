@@ -54,16 +54,16 @@ Here's a walkthrough of implemented user stories:
 
 Part 1: Recipes, Camera, Microphone and showing your macros:
 
-<img src='https://github.com/Jakester0813/MyRecipieBook/blob/master/app/snacks_meals.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/Jakester0813/MyRecipieBook/blob/master/app/snacks_meals.gif'  width="350" height="750" />
 
-<img src='https://i.imgur.com/28XaHfC.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/28XaHfC.gif' title='Video Walkthrough' width='' alt='Video Walkthrough'  width="350" height="750"/>
 
 Part 2: Recipes search, viewing recipe, and MacroCalculator:
 
-<img src='https://i.imgur.com/tM1XgCY.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/tM1XgCY.gif' title='Video Walkthrough' width='' alt='Video Walkthrough'  width="350" height="750"/>
 
 Part 3: Sign up and sign in:
 
-<img src='https://i.imgur.com/ndii3Vn.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/ndii3Vn.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' width="350" height="750" />
 
 
