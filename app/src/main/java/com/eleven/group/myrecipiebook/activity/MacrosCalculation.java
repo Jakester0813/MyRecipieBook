@@ -60,7 +60,7 @@ public class MacrosCalculation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_macros_calculation);
         recipeQuery = getIntent().getStringExtra("recipeQuery");
-
+        client = new AsyncHttpClient();
         try {
             handleFoodQuery(recipeQuery);
         } catch (UnsupportedEncodingException e) {
@@ -74,7 +74,7 @@ public class MacrosCalculation extends AppCompatActivity {
         pieChart.setHoleRadius(0);
         pieChart.setTransparentCircleAlpha(0);
 
-        calorieCalculation();
+
 
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
@@ -209,6 +209,7 @@ public class MacrosCalculation extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 d("getNutritionResponse:",response.toString());
                 recipe = Recipe.fromJSONObject(response);
+                calorieCalculation();
             }
 
             @Override
