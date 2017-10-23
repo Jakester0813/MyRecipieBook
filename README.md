@@ -54,6 +54,8 @@ Here's a walkthrough of implemented user stories:
 
 Part 1: Recipes, Camera, Microphone and showing your macros:
 
+<img src='https://github.com/Jakester0813/MyRecipieBook/blob/master/app/snacks_meals.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 <img src='https://i.imgur.com/28XaHfC.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 Part 2: Recipes search, viewing recipe, and MacroCalculator:
