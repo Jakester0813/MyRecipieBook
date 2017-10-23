@@ -40,8 +40,8 @@ The following user stories must be completed:
 The following additional stories must also be completed:
 
 * [x] User should be able to share the recepie with the message icon (Jake)
-* [x] Differentiate recepies into Snacks and Meals(Sid)
-* [x] Clickable recipe contents with ingredients and directions in the next activity with a checkbox functionality(Sid)
+* [x] Differentiate recepies into Snacks and Meals (Sid)
+* [x] Clickable recipe contents with ingredients and directions in the next activity with a checkbox functionality (Sid)
 * [x] Sign In Logo Activity (email and password) (Jake)
 * [x] Sign Up activity (Full name, email and Password) (Hima)
 * [x] Splash Screen (Jake)
