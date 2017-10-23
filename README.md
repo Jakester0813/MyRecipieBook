@@ -52,15 +52,15 @@ The following additional stories must also be completed:
 Here's a walkthrough of implemented user stories:
 
 
-Part 1:
+Part 1: Recipes, Camera, Microphone and showing your macros:
 
 <img src='https://i.imgur.com/28XaHfC.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-Part 2:
+Part 2: Recipes search, viewing recipe, and MacroCalculator:
 
 <img src='https://i.imgur.com/tM1XgCY.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-Part 3:
+Part 3: Sign up and sign in:
 
 <img src='https://i.imgur.com/ndii3Vn.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
