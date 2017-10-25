@@ -1,12 +1,8 @@
 package com.eleven.group.myrecipiebook.activity;
 
-import android.hardware.Camera.Size;
-
 import java.util.List;
 
-/**
- * Created by siddhatapatil on 10/20/17.
- */
+import android.hardware.Camera.Size;
 
 class Util {
 	static Size getMaxSize(List<Size> sizes) {

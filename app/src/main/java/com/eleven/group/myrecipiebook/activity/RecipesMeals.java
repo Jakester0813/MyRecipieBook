@@ -3,7 +3,7 @@ package com.eleven.group.myrecipiebook.activity;
 import com.eleven.group.myrecipiebook.R;
 
 public class RecipesMeals {
-    public static String[] names1 = new String[]{"Buddha     Bowl","Cashew Chicken","Soy        Salmon","Pasta", "Garlic     Shrimp", "Mustard chicken","Sweet sour pork", "Lime chicken"};
+    public static String[] names1 = new String[]{"Buddha Bowl","Cashew Chicken","Soy Salmon","Pasta", "Garlic Shrimp", "Mustard chicken","Sweet sour pork", "Lime chicken"};
     public static int[] resourceIds1 = new int[]{R.drawable.buddhabowl, R.drawable.cashewchicken, R.drawable.honeysoysalmon,
             R.drawable.pasta, R.drawable.honeygarlicshrimp, R.drawable.honeymustardchicken, R.drawable.sweetsourpork, R.drawable.limechicken};
 

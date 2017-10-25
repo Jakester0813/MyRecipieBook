@@ -57,7 +57,7 @@
 
     <Button
         android:id="@+id/btnMeal"
-        android:layout_width="137dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="Meals"
         android:textColor="#A0C4F3"
@@ -69,7 +69,7 @@
 
     <Button
         android:id="@+id/btnSnacks"
-        android:layout_width="137dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="Snacks"
         android:textColor="#B6E5F9"
@@ -80,7 +80,7 @@
 
     <Button
         android:id="@+id/btn_camera"
-        android:layout_width="137dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="Camera"
         android:textColor="#80A5E9"
