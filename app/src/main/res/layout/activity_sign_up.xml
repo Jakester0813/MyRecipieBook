@@ -6,17 +6,26 @@
     android:layout_height="match_parent"
     tools:context="com.eleven.group.myrecipiebook.activity.SignUp">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="fitEnd"
+        android:background="@drawable/food"/>
+
     <TextView
-        android:id="@+id/tvFullName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:id="@+id/tvRecipeName"
+        android:layout_width="300dp"
+        android:layout_height="450dp"
+        android:background="#65000000"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="100dp"
-        android:text="Full Name"
-        android:textSize="20sp"
-        android:textColor="@color/text_color"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="61dp" />
 
     <EditText
         android:id="@+id/etFullName"
@@ -24,69 +33,60 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:layout_alignTop="@+id/tvFullName"
-        android:layout_toEndOf="@+id/tvFullName"
-        android:layout_marginStart="17dp" />
-
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:text="E-mail"
-        android:textSize="20sp"
-        android:textColor="@color/text_color"
-        android:layout_below="@+id/etFullName"
-        android:layout_alignStart="@+id/tvFullName" />
+        android:hint="Full name"
+        android:textColorHint="#bebebe"
+        android:textColor="#bebebe"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="109dp" />
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/etFullName"
-        android:layout_alignTop="@+id/tvEmail"
         android:ems="10"
-        android:inputType="textEmailAddress" />
-
-    <TextView
-        android:id="@+id/tvPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvEmail"
-        android:layout_below="@+id/etEmail"
-        android:layout_marginTop="50dp"
-        android:text="Password"
-        android:textSize="20sp"
-        android:textColor="@color/text_color"/>
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:textColorHint="#bebebe"
+        android:textColor="#bebebe"
+        android:layout_below="@+id/etFullName"
+        android:layout_alignStart="@+id/etFullName"
+        android:layout_marginTop="51dp" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/etEmail"
-        android:layout_alignTop="@+id/tvPassword"
         android:ems="10"
-        android:inputType="textPassword" />
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColorHint="#bebebe"
+        android:textColor="#bebebe"
+        android:layout_below="@+id/etEmail"
+        android:layout_alignStart="@+id/etEmail"
+        android:layout_marginTop="51dp" />
 
     <TextView
         android:id="@+id/tv_password_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/etPassword"
+        android:text="@string/password_hint"
+        android:textColor="#bebebe"
+        android:layout_marginTop="12dp"
         android:layout_below="@+id/etPassword"
-        android:text="@string/password_hint" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/etPassword"
-        android:layout_below="@+id/etPassword"
-        android:layout_marginTop="94dp"
         android:text="Sign Up"
         android:textSize="20sp"
         android:textColor="@android:color/white"
-        android:background="@color/colorPrimaryDark"/>
+        android:background="@color/colorPrimaryDark"
+        android:layout_below="@+id/tv_password_hint"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp" />
 
 
 </RelativeLayout>

@@ -37,7 +37,6 @@ import cz.msebera.android.httpclient.Header;
 
 import static android.R.attr.description;
 import static android.util.Log.d;
-import static com.eleven.group.myrecipiebook.R.id.macros;
 
 public class MacrosCalculation extends AppCompatActivity {
 

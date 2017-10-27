@@ -1,5 +1,6 @@
 package com.eleven.group.myrecipiebook.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +19,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import static com.eleven.group.myrecipiebook.R.id.macros;
 import static com.eleven.group.myrecipiebook.R.id.radioGroup;
 
 public class SignUp extends AppCompatActivity {
@@ -54,7 +54,8 @@ public class SignUp extends AppCompatActivity {
                     attemptSignUp();
                 }
                 if(!email.getText().toString().contains("@") && password.length() < 6){
-                    Toast.makeText(SignUp.this,"Your email is invalid and password is less than 6 characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this,"Your email is invalid and password is less than 6 characters",
+                            Toast.LENGTH_SHORT).show();
                 }
                 else if(!email.getText().toString().contains("@")){
                     Toast.makeText(SignUp.this,"Email address is invalid", Toast.LENGTH_SHORT).show();
@@ -81,16 +82,14 @@ public class SignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(SignUp.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(SignUp.this, SignInActivity.class);
+                            startActivity(i);
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(SignUp.this, "Sign up FAILED", Toast.LENGTH_SHORT).show();
                             Log.d("Fail", task.getException().toString());
-
                         }
-
-                        // ...
                     }
                 });
-
     }
 }

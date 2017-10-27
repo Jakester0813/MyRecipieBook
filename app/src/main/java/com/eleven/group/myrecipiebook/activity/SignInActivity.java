@@ -3,6 +3,7 @@ package com.eleven.group.myrecipiebook.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -57,8 +58,9 @@ public class SignInActivity extends AppCompatActivity{
     private static final int REQUEST_READ_CONTACTS = 0;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private EditText mEmailView;
     private EditText mPasswordView;
+    private TextView mCreateAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,7 @@ public class SignInActivity extends AppCompatActivity{
         setContentView(R.layout.activity_sign_in);
         // Set up the login form.
         mAuth = FirebaseAuth.getInstance();
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = (EditText) findViewById(R.id.email);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -82,22 +84,36 @@ public class SignInActivity extends AppCompatActivity{
             }
         });
 
+
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isEmailValid(mEmailView.getText().toString()) && isPasswordValid(mPasswordView.getText().toString())) {
+                if(isEmailValid(mEmailView.getText().toString()) &&
+                        isPasswordValid(mPasswordView.getText().toString())) {
                     attemptLogin();
                 }
-                if(!isEmailValid(mEmailView.getText().toString()) && isPasswordValid(mPasswordView.getText().toString())){
-                    Toast.makeText(SignInActivity.this,"Your email is invalid and password is less than 6 characters", Toast.LENGTH_SHORT).show();
+                if(!isEmailValid(mEmailView.getText().toString())
+                        && isPasswordValid(mPasswordView.getText().toString())){
+                    Toast.makeText(SignInActivity.this,"Your email is invalid and password is less than 6 characters",
+                            Toast.LENGTH_SHORT).show();
                 }
                 else if(!isEmailValid(mEmailView.getText().toString())){
                     Toast.makeText(SignInActivity.this,"Email address is invalid", Toast.LENGTH_SHORT).show();
                 }
                 else if(!isPasswordValid(mPasswordView.getText().toString())){
-                    Toast.makeText(SignInActivity.this,"Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignInActivity.this,"Password must be at least 6 characters",
+                            Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        mCreateAccount = (TextView) findViewById(R.id.createAccount);
+        mCreateAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SignInActivity.this, SignUp.class);
+                startActivity(i);
             }
         });
     }
@@ -108,7 +124,6 @@ public class SignInActivity extends AppCompatActivity{
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
-
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -127,16 +142,15 @@ public class SignInActivity extends AppCompatActivity{
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                             Toast.makeText(SignInActivity.this, "Sign in Successful", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(SignInActivity.this, MainActivity.class);
+                            startActivity(i);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("Failure", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(SignInActivity.this, "Authentication failed. CHeck your credentials and try again",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, "Authentication failed. " +
+                                            "CHeck your credentials and try again", Toast.LENGTH_SHORT).show();
                             Toast.makeText(SignInActivity.this, "Sign up FAILED", Toast.LENGTH_SHORT).show();
-
                         }
-
-                        // ...
                     }
                 });
     }

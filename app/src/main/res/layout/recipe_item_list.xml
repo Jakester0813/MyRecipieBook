@@ -11,10 +11,7 @@
             android:id="@+id/ivRecipeImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/tvRecipeName"
@@ -25,9 +22,7 @@
             android:gravity="center"
             android:padding="5dp"
             android:text="Title"
-            android:textColor="#ffffff"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            android:textColor="#ffffff"/>
 
     </RelativeLayout>
 
