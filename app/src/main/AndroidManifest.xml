@@ -3,20 +3,13 @@
     package="com.eleven.group.myrecipiebook">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-        -->
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
-        android:name=".MyRecipieBookApplication"
+        android:name=".Application.MyRecipieBookApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:hardwareAccelerated="false"
@@ -64,13 +57,8 @@
         <activity android:name=".activity.SignUp"></activity>
         <activity android:name=".activity.SnacksGridActivity" />
         <activity android:name=".activity.MealGridActivity" />
+        <activity android:name=".activity.Camera3Activity" />
 
-        <activity android:name=".activity.CameraMenuActivity" />
-        <activity android:name=".activity.Camera2Activity" />
-        <activity android:name=".activity.CameraActivity" />
-        <activity android:name=".activity.MyRecipeFilesActivity" />
-        <activity android:name=".activity.SettingActivity" />
-
-    </application>
+ </application>
 
 </manifest>

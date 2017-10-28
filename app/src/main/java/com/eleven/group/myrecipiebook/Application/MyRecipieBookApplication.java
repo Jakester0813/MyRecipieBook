@@ -1,4 +1,4 @@
-package com.eleven.group.myrecipiebook;
+package com.eleven.group.myrecipiebook.Application;
 
 import android.app.Application;
 import android.os.Bundle;
