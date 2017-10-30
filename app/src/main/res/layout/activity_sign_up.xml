@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:scaleType="fitEnd"
-        android:background="@drawable/food"/>
+        android:background="@drawable/signup"/>
 
     <TextView
         android:id="@+id/tvRecipeName"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Full name"
+        android:hint="@string/full_name"
         android:textColorHint="#bebebe"
         android:textColor="#bebebe"
         android:layout_alignParentTop="true"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:hint="Email"
+        android:hint="@string/email"
         android:textColorHint="#bebebe"
         android:textColor="#bebebe"
         android:layout_below="@+id/etFullName"
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textColorHint="#bebebe"
         android:textColor="#bebebe"
@@ -80,13 +80,12 @@
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:text="@string/signup_button"
         android:textSize="20sp"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimaryDark"
         android:layout_below="@+id/tv_password_hint"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp" />
-
 
 </RelativeLayout>

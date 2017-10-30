@@ -19,7 +19,7 @@
         android:layout_below="@+id/include"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="Gender"
+        android:text="@string/gender"
         android:textSize="20sp"
         android:textColor="@color/text_color"/>
 
@@ -35,14 +35,14 @@
             android:id="@+id/rbMale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"
+            android:text="@string/male"
             android:buttonTint="@color/colorPrimaryDark"/>
 
         <RadioButton
             android:id="@+id/rbFemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Female"
+            android:text="@string/female"
             android:buttonTint="@color/colorPrimaryDark"/>
 
     </RadioGroup>
@@ -54,7 +54,7 @@
         android:layout_alignStart="@+id/tvGenderTitle"
         android:layout_below="@+id/radioGroup"
         android:layout_marginTop="34dp"
-        android:text="Age"
+        android:text="@string/age"
         android:textSize="20sp"
         android:textColor="@color/text_color"/>
 
@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
-        android:text="Weight(in kg)"
+        android:text="@string/weight"
         android:textSize="20sp"
         android:textColor="@color/text_color"
         android:layout_below="@+id/npAge"
@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
-        android:text="Height(in cm)"
+        android:text="@string/height"
         android:textSize="20sp"
         android:textColor="@color/text_color"
         android:layout_below="@+id/etWeight"
@@ -109,7 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:text="Calories"
+        android:text="@string/calories"
         android:textSize="20sp"
         android:textColor="@color/text_color"
         android:layout_below="@+id/etHeight"
@@ -126,7 +126,7 @@
         android:id="@+id/btnCalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calculate"
+        android:text="@string/calculate_button"
         android:textSize="20sp"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimaryDark"
