@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
 
 
@@ -19,14 +20,16 @@
 
     <Button
         android:id="@+id/btn_log_in"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:text="@string/log_in"
-        android:layout_alignParentStart="true"
-        android:textColor="#AA0000"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
         android:textAppearance="@android:style/TextAppearance.Medium"
-        android:background="#AAAAAA"
-        />
+        android:background="@drawable/button"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btn_add_meal"
+        android:layout_marginTop="13dp" />
 
     <Button
         android:id="@+id/btn_add_meal"
@@ -34,13 +37,13 @@
         android:layout_height="wrap_content"
         android:text="@string/add_meal"
         android:textStyle="bold"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/btn_sign_up"
         android:textColor="@color/text_color"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:background="@color/white"
-        />
+        android:layout_below="@+id/btn_log_in"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp" />
 
     <Button
         android:id="@+id/button"
@@ -64,11 +67,10 @@
         android:text="Meals"
         android:textStyle="bold"
         android:textColor="@color/text_color"
-        android:layout_alignParentEnd="true"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:background="@color/white"
-        android:layout_alignBaseline="@+id/btnSnacks"
-        android:layout_alignBottom="@+id/btnSnacks" />
+        android:layout_below="@+id/button"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/btnSnacks"
@@ -76,33 +78,36 @@
         android:layout_height="wrap_content"
         android:text="Snacks"
         android:textStyle="bold"
-        android:layout_alignParentStart="true"
         android:textColor="@color/text_color"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:background="@color/white"
         android:layout_below="@+id/button"
-        android:layout_marginTop="17dp" />
+        android:layout_alignParentStart="true" />
 
 
     <Button
         android:id="@+id/btn_sign_up"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:textColor="#AA0000"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textColor="@color/colorPrimary"
         android:textAppearance="@android:style/TextAppearance.Medium"
-        android:background="#AAAAAA"
-        android:text="Sign Up" />
+        android:background="@drawable/button"
+        android:text="Sign Up"
+        android:textStyle="bold"
+        android:layout_alignBaseline="@+id/btn_sign_out"
+        android:layout_alignBottom="@+id/btn_sign_out"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/btn_sign_out"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:text="Log Out"
-        android:textColor="#AA0000"
+        android:textColor="@color/colorPrimary"
         android:textAppearance="@android:style/TextAppearance.Medium"
-        android:background="#AAAAAA"
+        android:background="@drawable/button"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
         android:layout_alignBaseline="@+id/btn_log_in"
         android:layout_alignBottom="@+id/btn_log_in"
         android:layout_toEndOf="@+id/btn_log_in" />
@@ -111,9 +116,9 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logo_home"
-        android:layout_below="@+id/btn_log_in"
-        android:layout_alignParentEnd="true" />
+        app:srcCompat="@drawable/border1"
+        android:layout_alignTop="@+id/btn_add_meal"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:id="@+id/iv_camera"
