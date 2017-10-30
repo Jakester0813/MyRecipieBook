@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#2E1E61">
+    android:layout_height="wrap_content">
 
 
 
@@ -20,8 +19,8 @@
 
     <Button
         android:id="@+id/btn_log_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:text="@string/log_in"
         android:layout_alignParentStart="true"
         android:textColor="#AA0000"
@@ -34,12 +33,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add_meal"
+        android:textStyle="bold"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/btn_sign_up"
-        android:textColor="#FFEB3B"
+        android:textColor="@color/text_color"
         android:textAppearance="@android:style/TextAppearance.Medium"
-        android:background="#000000"
+        android:background="@color/white"
         />
 
     <Button
@@ -47,53 +47,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="All Recipes"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:textColor="#BFFCF4"
-        android:layout_below="@+id/btn_add_meal"
         android:textAppearance="@android:style/TextAppearance.Medium"
-        android:background="#51B8AB"
-        />
+        android:background="@color/white"
+        android:layout_below="@+id/btn_add_meal"
+        android:layout_toEndOf="@+id/placeholder"
+        android:layout_marginTop="14dp" />
 
     <Button
         android:id="@+id/btnMeal"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="Meals"
-        android:textColor="#A0C4F3"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"
+        android:layout_alignParentEnd="true"
         android:textAppearance="@android:style/TextAppearance.Medium"
-        android:background="#4974AC"
+        android:background="@color/white"
         android:layout_alignBaseline="@+id/btnSnacks"
-        android:layout_alignBottom="@+id/btnSnacks"
-        android:layout_toEndOf="@+id/btnSnacks" />
+        android:layout_alignBottom="@+id/btnSnacks" />
 
     <Button
         android:id="@+id/btnSnacks"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:text="Snacks"
-        android:textColor="#B6E5F9"
+        android:textStyle="bold"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/text_color"
         android:textAppearance="@android:style/TextAppearance.Medium"
-        android:background="#45A6D0"
+        android:background="@color/white"
         android:layout_below="@+id/button"
-        android:layout_alignParentStart="true" />
+        android:layout_marginTop="17dp" />
 
-    <Button
-        android:id="@+id/btn_camera"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:text="Camera"
-        android:textColor="#80A5E9"
-        android:textAppearance="@android:style/TextAppearance.Medium"
-        android:background="#26466D"
-        android:layout_alignBaseline="@+id/btnMeal"
-        android:layout_alignBottom="@+id/btnMeal"
-        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/btn_sign_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:textColor="#AA0000"
@@ -103,8 +97,8 @@
 
     <Button
         android:id="@+id/btn_sign_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:text="Log Out"
         android:textColor="#AA0000"
         android:textAppearance="@android:style/TextAppearance.Medium"
@@ -114,12 +108,38 @@
         android:layout_toEndOf="@+id/btn_log_in" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/logo_background"
+        app:srcCompat="@drawable/logo_home"
+        android:layout_below="@+id/btn_log_in"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:id="@+id/iv_camera"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/camera" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/fork"
         android:layout_below="@+id/placeholder"
-        android:layout_toEndOf="@+id/placeholder" />
+        android:layout_toEndOf="@+id/placeholder"
+        android:layout_above="@+id/iv_camera" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="39dp"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/spoon"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_above="@+id/iv_camera" />
 
 
 </RelativeLayout>
