@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.eleven.group.myrecipiebook.R;
 import com.eleven.group.myrecipiebook.fragment.DualPaneFragment;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity
     public static final String LIST_FRAGMENT = "list_fragment";
     public static final String VIEW_PAGER_FRAGMENT = "viewpager_fragment";
     Button btnRecipe, btnAddMeal, btnLogIn, btnSignOut, btnSignUp, btnCamera,btnSnacks, btnMeal;
+    ImageView ivCamera;
     FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,11 +93,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        btnCamera = (Button) findViewById(R.id.btn_camera);
-        btnCamera.setOnClickListener(new View.OnClickListener() {
+        ivCamera = (ImageView) findViewById(R.id.iv_camera);
+        ivCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, CameraMenuActivity.class);
+                Intent i = new Intent(MainActivity.this, Camera3Activity.class);
                 startActivity(i);
             }
         });
