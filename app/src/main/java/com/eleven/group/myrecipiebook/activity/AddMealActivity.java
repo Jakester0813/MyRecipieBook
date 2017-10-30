@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,8 @@ public class AddMealActivity extends AppCompatActivity {
 
     TextView mResult;
     AsyncHttpClient client;
+    Button mYesBtn, mNoBtn;
+    String food;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +49,24 @@ public class AddMealActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meal);
         mResult = (TextView)findViewById(R.id.tv_result);
+        mYesBtn = (Button) findViewById(R.id.btn_yes);
+        mNoBtn = (Button) findViewById(R.id.btn_no);
         client = new AsyncHttpClient();
-
-        mResult.setOnClickListener(new View.OnClickListener() {
+        mYesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent i = new Intent(AddMealActivity.this, MacrosCalculation.class);
-                i.putExtra("recipeQuery", mResult.getText());
+                i.putExtra("recipeQuery", food);
                 startActivity(i);
+            }
+        });
+        mNoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mResult.setText("");
+                mYesBtn.setVisibility(View.GONE);
+                mNoBtn.setVisibility(View.GONE);
+                promptSpeechInput();
             }
         });
     }
@@ -81,10 +94,14 @@ public class AddMealActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
-
+                    mYesBtn.setVisibility(View.VISIBLE);
+                    mNoBtn.setVisibility(View.VISIBLE);
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    mResult.setText(result.get(0));
+                    food = result.get(0);
+                    StringBuilder sb = new StringBuilder("You said you had a \'");
+                    sb.append(result.get(0)).append("\'. Is this correct?");
+                    mResult.setText(sb.toString());
                 }
                 break;
             }

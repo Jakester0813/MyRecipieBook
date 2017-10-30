@@ -10,11 +10,45 @@
         android:id="@+id/tv_result"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="216dp"
         android:gravity="center"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
         android:textSize="24sp"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="275dp"
+        tools:layout_editor_absoluteY="275dp" />
+
+    <Button
+        android:id="@+id/btn_yes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_add_meal"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/text_icon_color"
+        android:layout_alignStart="@+id/tv_result"
+        android:layout_below="@+id/tv_result"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginStart="62dp"
+        android:text="@string/btn_confirm" />
+
+    <Button
+        android:id="@+id/btn_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_add_meal"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/text_icon_color"
+        android:layout_alignBaseline="@+id/btn_yes"
+        android:layout_alignBottom="@+id/btn_yes"
+        android:layout_alignEnd="@+id/tv_result"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        android:layout_below="@+id/tv_result"
+        android:layout_marginEnd="61dp"
+        android:text="@string/btn_cancel" />
 
 </RelativeLayout>

@@ -23,6 +23,8 @@
     <string name="pictureSizeText">Picture Size</string>
     <string name="videoSizeText">Video Size</string>
     <string name="btnSave">Save</string>
+    <string name="btn_confirm">Yes</string>
+    <string name="btn_cancel">No</string>
     <string name="title_activity_sign_in">Sign in</string>
     <string name="title_activity_main">Camera</string>
     <string name="title_activity_no_camera">No Camera</string>
