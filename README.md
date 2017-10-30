@@ -2,7 +2,7 @@
 
 Submitted by: **Siddhata Patil**, **Jacob Rushing** and **Himavarshini Mittapally**
 
-Time spent: **48** hours spent in total.
+Time spent: **60** hours spent in total.
 
 
 My Recipe Book is a Food and Nutrition App.
@@ -52,9 +52,21 @@ The following additional stories must also be completed:
 Here's a walkthrough of implemented user stories:
 
 
-Part 1: Recipes, Camera, Microphone and showing your macros:
+Part 1: Snacks, Meals, Directions and Ingredients:
 
-<img src='https://github.com/Jakester0813/MyRecipieBook/blob/master/app/snacks_meals.gif'  width="350" height="750" />
+<img src='https://github.com/Jakester0813/MyRecipieBook/blob/master/app/snack.gif'  width="350" height="750" />
+
+Part 2: Camera for My Recipes:
+
+<img src='https://github.com/Jakester0813/MyRecipieBook/blob/master/app/camera.gif'  width="350" height="750" />
+
+
+Part 3: Sign In and Sign Up Activity:
+
+<img src='https://github.com/Jakester0813/MyRecipieBook/blob/master/app/signin.gif'  width="350" height="750" />
+
+
+Part 4: Microphone Activity in Add your meal:
 
 <img src='https://i.imgur.com/28XaHfC.gif' title='Video Walkthrough' width='' alt='Video Walkthrough'  width="350" height="750"/>
 
@@ -62,8 +74,5 @@ Part 2: Recipes search, viewing recipe, and MacroCalculator:
 
 <img src='https://i.imgur.com/tM1XgCY.gif' title='Video Walkthrough' width='' alt='Video Walkthrough'  width="350" height="750"/>
 
-Part 3: Sign up and sign in:
-
-<img src='https://i.imgur.com/ndii3Vn.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' width="350" height="750" />
 
 
