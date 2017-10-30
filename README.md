@@ -70,9 +70,11 @@ Part 4: Microphone Activity in Add your meal:
 
 <img src='https://github.com/Jakester0813/MyRecipieBook/blob/master/app/microphone.gif'  width="350" height="750" />
 
-Part 2: Recipes search, viewing recipe, and MacroCalculator:
+Part 5: Recipes search, viewing recipe and Sharing:
 
-<img src='https://i.imgur.com/tM1XgCY.gif' title='Video Walkthrough' width='' alt='Video Walkthrough'  width="350" height="750"/>
+<img src='https://github.com/Jakester0813/MyRecipieBook/blob/master/app/share.gif'  width="350" height="750"/>
 
+Part 5: Calorie Calculator:
 
+<img src='https://github.com/Jakester0813/MyRecipieBook/blob/master/app/calorie.gif'  width="350" height="750"/>
 
