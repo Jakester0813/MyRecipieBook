@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
@@ -62,6 +63,11 @@ public class RecipeDetailActivity extends AppCompatActivity {
         toolbar.setTitle(searchRecipe.getRecipeName());
         setSupportActionBar(toolbar);
         getRecipeYummly(searchRecipe);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     public void detailView(Recipe recipe){
