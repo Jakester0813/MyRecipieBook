@@ -14,7 +14,7 @@
         android:id="@+id/calculator"
         android:orderInCategory="200"
         android:title="Calculator"
-        android:icon="@drawable/calculator_icon"
+        android:icon="@drawable/calorie_cal"
         app:showAsAction="always|collapseActionView" />
 
 </menu>
