@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso;
 public class Recipes {
     public static String[] names = new String[]{"Crepes","Pancakes","Scone","French Toast", "Muffins", "Waffles","Toast", "Banana Bread"};
     public static int[] resourceIds = new int[]{R.drawable.crepe, R.drawable.pancake, R.drawable.scone,
-            R.drawable.frenchtoast, R.drawable.muffin, R.drawable.waffle, R.drawable.toasted, R.drawable.bananabread};
+            R.drawable.frenchtoast, R.drawable.muffin, R.drawable.waffle, R.drawable.toast, R.drawable.bananabread};
 
     public static String[] ingredients = new String[]{
             "1/2 cup all-purpose flour`1 egg`1/4 cup milk`1/4 cup water`1 tbsp melted butter`dash of salt",

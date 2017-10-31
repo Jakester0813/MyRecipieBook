@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Recipe Book</string>
+    <string name="app_name">MyRecipeBook</string>
     <string name="share_text">Share Recipe</string>
     <string name="add_meal">Add Your Meal</string>
     <string name="log_in">Log In</string>
