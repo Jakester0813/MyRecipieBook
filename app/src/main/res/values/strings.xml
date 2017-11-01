@@ -34,17 +34,23 @@
     <string name="pictureSizeText">Picture Size</string>
     <string name="videoSizeText">Video Size</string>
     <string name="btnSave">Save</string>
+    <string name="btn_confirm">Yes</string>
+    <string name="btn_cancel">No</string>
     <string name="title_activity_sign_in">Sign in</string>
     <string name="title_activity_main">Camera</string>
     <string name="title_activity_no_camera">No Camera</string>
     <string name="delete">Delete</string>
     <string name="password_hint">Must be at least 6 characters long</string>
-    <string name="no_account">No account yet? create one</string>
+    <string name="no_account">No account yet? Create one</string>
     <string name="full_name">Full name</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="signup_button">Sign Up</string>
     <string name="signin_button">Sign In</string>
+    <string name="total_calories">Total today (2k max)</string>
+    <string name="protein">Protein</string>
+    <string name="carbs">Carbs</string>
+    <string name="fat">Fat</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

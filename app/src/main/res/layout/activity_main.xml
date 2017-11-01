@@ -82,10 +82,12 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/border1"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:scaleType="centerCrop"/>
+        android:layout_below="@id/btnSnacks"
+        android:layout_marginTop="25dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/border1" />
 
     <ImageView
         android:id="@+id/iv_camera"
