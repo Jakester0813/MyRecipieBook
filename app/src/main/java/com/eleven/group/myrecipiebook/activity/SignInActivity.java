@@ -29,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +62,8 @@ public class SignInActivity extends AppCompatActivity{
     private EditText mEmailView;
     private EditText mPasswordView;
     private TextView mCreateAccount;
+    private ProgressBar mProgress;
+    private Button mEmailSignInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,7 @@ public class SignInActivity extends AppCompatActivity{
         // Set up the login form.
         mAuth = FirebaseAuth.getInstance();
         mEmailView = (EditText) findViewById(R.id.email);
-
+        mProgress = (ProgressBar) findViewById(R.id.pb_sign_in);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -85,10 +88,12 @@ public class SignInActivity extends AppCompatActivity{
         });
 
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                mProgress.setVisibility(View.VISIBLE);
+                mEmailSignInButton.setVisibility(View.INVISIBLE);
                 if(isEmailValid(mEmailView.getText().toString()) &&
                         isPasswordValid(mPasswordView.getText().toString())) {
                     attemptLogin();
@@ -136,6 +141,9 @@ public class SignInActivity extends AppCompatActivity{
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        mProgress.setVisibility(View.INVISIBLE);
+                        mEmailSignInButton.setVisibility(View.VISIBLE);
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Success", "signInWithEmail:success");

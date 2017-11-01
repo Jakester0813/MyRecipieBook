@@ -64,6 +64,15 @@
         android:layout_below="@+id/tv_password_hint"
         android:layout_centerHorizontal="true" />
 
+    <ProgressBar
+        android:id="@+id/pb_sign_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/tv_password_hint"
+        android:layout_centerHorizontal="true" />
+
     <TextView
         android:id="@+id/createAccount"
         android:layout_width="wrap_content"

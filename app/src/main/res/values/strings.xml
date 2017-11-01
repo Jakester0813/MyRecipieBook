@@ -41,7 +41,7 @@
     <string name="title_activity_no_camera">No Camera</string>
     <string name="delete">Delete</string>
     <string name="password_hint">Must be at least 6 characters long</string>
-    <string name="no_account">No account yet? create one</string>
+    <string name="no_account">No account yet? Create one</string>
     <string name="full_name">Full name</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
