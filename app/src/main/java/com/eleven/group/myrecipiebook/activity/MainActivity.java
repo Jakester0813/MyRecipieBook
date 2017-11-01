@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity
         implements ListFragment.OnRecipeSelectedInterface, GridFragment.OnRecipeSelectedInterface {
     public static final String LIST_FRAGMENT = "list_fragment";
     public static final String VIEW_PAGER_FRAGMENT = "viewpager_fragment";
-    Button btnRecipe, btnAddMeal, btnLogIn, btnSignOut, btnSignUp, btnCamera,btnSnacks, btnMeal;
+    Button btnRecipe, btnAddMeal, btnSignOut,btnSnacks, btnMeal;
     ImageView ivCamera;
     FirebaseAuth auth;
     @Override
@@ -61,35 +61,13 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        btnSignUp = (Button) findViewById(R.id.btn_sign_up);
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, SignUp.class);
-                startActivity(i);
-            }
-        });
-
-
-
-        btnLogIn = (Button) findViewById(R.id.btn_log_in);
-        btnLogIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, SignInActivity.class);
-                startActivity(i);
-            }
-        });
 
         btnSignOut = (Button) findViewById(R.id.btn_sign_out);
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(auth.getCurrentUser() != null){
-                    auth.signOut();
-                    btnSignOut.setVisibility(View.GONE);
-                    btnLogIn.setVisibility(View.VISIBLE);
-                }
+                Intent i = new Intent(MainActivity.this, SignInActivity.class);
+                startActivity(i);
             }
         });
 
@@ -121,19 +99,6 @@ public class MainActivity extends AppCompatActivity
         });
 
     } // onCreate()
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(auth.getCurrentUser() != null){
-            btnSignOut.setVisibility(View.VISIBLE);
-            btnLogIn.setVisibility(View.GONE);
-        }
-        else {
-            btnSignOut.setVisibility(View.GONE);
-            btnLogIn.setVisibility(View.VISIBLE);
-        }
-    }
 
     @Override
     public void onListRecipeSelected(int index) {
