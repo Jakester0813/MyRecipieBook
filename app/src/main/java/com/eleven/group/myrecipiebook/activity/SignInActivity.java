@@ -61,6 +61,13 @@ public class SignInActivity extends AppCompatActivity{
     private FirebaseAuth mAuth;
 
     private static final int REQUEST_READ_CONTACTS = 0;
+    private static String PASSWORD_EMAIL_INVALID = "Your email is invalid and password is less than 6 characters";
+    private static String EMAIL_INVALID = "Email address is invalid";
+    private static String PASSWORD_INVALID = "Password must be at least 6 characters";
+    private static String SIGN_IN_SUCCESS = "Sign in Successful";
+    private static String AUTHENTICATION_FAILED = "Authentication failed. Check your credentials and try again";
+    private static String SIGN_IN_FAILED = "Sign in FAILED";
+    private static String EMAIL_CHARACTER = "@";
 
     // UI references.
     private EditText mEmailView;
@@ -104,14 +111,14 @@ public class SignInActivity extends AppCompatActivity{
                 }
                 if(!isEmailValid(mEmailView.getText().toString())
                         && isPasswordValid(mPasswordView.getText().toString())){
-                    Toast.makeText(SignInActivity.this,"Your email is invalid and password is less than 6 characters",
+                    Toast.makeText(SignInActivity.this,PASSWORD_EMAIL_INVALID,
                             Toast.LENGTH_SHORT).show();
                 }
                 else if(!isEmailValid(mEmailView.getText().toString())){
-                    Toast.makeText(SignInActivity.this,"Email address is invalid", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignInActivity.this,EMAIL_INVALID, Toast.LENGTH_SHORT).show();
                 }
                 else if(!isPasswordValid(mPasswordView.getText().toString())){
-                    Toast.makeText(SignInActivity.this,"Password must be at least 6 characters",
+                    Toast.makeText(SignInActivity.this,PASSWORD_INVALID,
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -150,18 +157,15 @@ public class SignInActivity extends AppCompatActivity{
                         mEmailSignInButton.setVisibility(View.VISIBLE);
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("Success", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
-                            Toast.makeText(SignInActivity.this, "Sign in Successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, SIGN_IN_SUCCESS, Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(SignInActivity.this, MainActivity.class);
                             startActivity(i);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w("Failure", "signInWithEmail:failure", task.getException());
-                            Toast.makeText(SignInActivity.this, "Authentication failed. " +
-                                            "CHeck your credentials and try again", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(SignInActivity.this, "Sign up FAILED", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, AUTHENTICATION_FAILED, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignInActivity.this, SIGN_IN_FAILED, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -174,7 +178,7 @@ public class SignInActivity extends AppCompatActivity{
     }
 
     public boolean isEmailValid(String email){
-        return email.contains("@");
+        return email.contains(EMAIL_CHARACTER);
     }
 
     public boolean isPasswordValid(String password){

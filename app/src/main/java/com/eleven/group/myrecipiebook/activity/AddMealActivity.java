@@ -48,6 +48,10 @@ public class AddMealActivity extends AppCompatActivity {
      * Created By: Jake Rushing
      */
 
+    private static String RECIPE_QUERY = "recipeQuery";
+    private static String YOU_SAID = "You said you had a \'";
+    private static String IS_IT_CORRECT = "\'. Is this correct?";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -62,7 +66,7 @@ public class AddMealActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(AddMealActivity.this, MacrosCalculation.class);
-                i.putExtra("recipeQuery", food);
+                i.putExtra(RECIPE_QUERY, food);
                 startActivity(i);
             }
         });
@@ -105,8 +109,8 @@ public class AddMealActivity extends AppCompatActivity {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     food = result.get(0);
-                    StringBuilder sb = new StringBuilder("You said you had a \'");
-                    sb.append(result.get(0)).append("\'. Is this correct?");
+                    StringBuilder sb = new StringBuilder(YOU_SAID);
+                    sb.append(result.get(0)).append(IS_IT_CORRECT);
                     mResult.setText(sb.toString());
                 }
                 break;

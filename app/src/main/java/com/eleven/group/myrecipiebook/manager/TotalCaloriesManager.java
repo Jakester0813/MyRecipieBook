@@ -14,6 +14,9 @@ import java.util.Date;
 public class TotalCaloriesManager {
     private static TotalCaloriesManager mInstance;
     private SharedPreferences mPrefs;
+    private static String RECIPE_PREFS = "recipe_prefs";
+    private static String TOTAL_CALORIES = "total_calories";
+    private static String TODAY = "today";
 
     public static TotalCaloriesManager getInstance(Context context){
         if(mInstance == null){
@@ -23,23 +26,23 @@ public class TotalCaloriesManager {
     }
 
     private TotalCaloriesManager(Context context){
-        mPrefs = context.getSharedPreferences("recipe_prefs",Context.MODE_PRIVATE);
+        mPrefs = context.getSharedPreferences(RECIPE_PREFS,Context.MODE_PRIVATE);
     }
 
     public void addTotalCalories(int calories){
         if(checkDate()) {
-            int totalCalories = mPrefs.getInt("total_calories", 0);
+            int totalCalories = mPrefs.getInt(TOTAL_CALORIES, 0);
             totalCalories += calories;
-            mPrefs.edit().putInt("total_calories", totalCalories).commit();
+            mPrefs.edit().putInt(TOTAL_CALORIES, totalCalories).commit();
         }
         else{
-            mPrefs.edit().putInt("total_calories", calories).commit();
+            mPrefs.edit().putInt(TOTAL_CALORIES, calories).commit();
             setDate();
         }
     }
 
     public int getTotalCalories(){
-        return mPrefs.getInt("total_calories", 0);
+        return mPrefs.getInt(TOTAL_CALORIES, 0);
     }
 
     public boolean checkDate(){
@@ -47,7 +50,7 @@ public class TotalCaloriesManager {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        return day == mPrefs.getInt("today",0);
+        return day == mPrefs.getInt(TODAY,0);
     }
 
     public void setDate(){
@@ -55,6 +58,6 @@ public class TotalCaloriesManager {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         int day = cal.get(Calendar.DAY_OF_MONTH);
-        mPrefs.edit().putInt("today",day).commit();
+        mPrefs.edit().putInt(TODAY,day).commit();
     }
 }

@@ -29,6 +29,13 @@ public class SignUp extends AppCompatActivity {
     Button signUp;
     private FirebaseAuth mAuth;
 
+    private static String PASSWORD_EMAIL_INVALID = "Your email is invalid and password is less than 6 characters";
+    private static String EMAIL_INVALID = "Email address is invalid";
+    private static String PASSWORD_INVALID = "Password must be at least 6 characters";
+    private static String SIGN_UP_SUCCESS = "Sign up Successful";
+    private static String SIGN_UP_FAILED = "Sign up FAILED";
+    private static String EMAIL_CHARACTER = "@";
+
     /*
      * Created By: Jake Rushing
      */
@@ -56,22 +63,22 @@ public class SignUp extends AppCompatActivity {
                 if(isEmailValid(email.getText().toString()) && isPasswordValid(password.getText().toString())) {
                     attemptSignUp();
                 }
-                if(!email.getText().toString().contains("@") && password.length() < 6){
-                    Toast.makeText(SignUp.this,"Your email is invalid and password is less than 6 characters",
+                if(isEmailValid(email.getText().toString()) && isPasswordValid(password.getText().toString())){
+                    Toast.makeText(SignUp.this,PASSWORD_EMAIL_INVALID,
                             Toast.LENGTH_SHORT).show();
                 }
-                else if(!email.getText().toString().contains("@")){
-                    Toast.makeText(SignUp.this,"Email address is invalid", Toast.LENGTH_SHORT).show();
+                else if(!isEmailValid(email.getText().toString())){
+                    Toast.makeText(SignUp.this,EMAIL_INVALID, Toast.LENGTH_SHORT).show();
                 }
-                else if(password.length() < 6){
-                    Toast.makeText(SignUp.this,"Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                else if(isPasswordValid(password.getText().toString())){
+                    Toast.makeText(SignUp.this,PASSWORD_INVALID, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
     public boolean isEmailValid(String email){
-        return email.contains("@");
+        return email.contains(EMAIL_CHARACTER);
     }
 
     public boolean isPasswordValid(String password){
@@ -84,13 +91,12 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(SignUp.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUp.this, SIGN_UP_SUCCESS, Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(SignUp.this, SignInActivity.class);
                             startActivity(i);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(SignUp.this, "Sign up FAILED", Toast.LENGTH_SHORT).show();
-                            Log.d("Fail", task.getException().toString());
+                            Toast.makeText(SignUp.this, SIGN_UP_FAILED, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
