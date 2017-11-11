@@ -33,6 +33,8 @@ import cz.msebera.android.httpclient.Header;
 
 import static android.util.Log.d;
 
+
+
 public class AddMealActivity extends AppCompatActivity {
 
     private final int REQ_CODE_SPEECH_INPUT = 100;
@@ -41,6 +43,10 @@ public class AddMealActivity extends AppCompatActivity {
     AsyncHttpClient client;
     Button mYesBtn, mNoBtn;
     String food;
+
+    /*
+     * Created By: Jake Rushing
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

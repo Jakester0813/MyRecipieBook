@@ -14,9 +14,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eleven.group.myrecipiebook.R;
+import com.eleven.group.myrecipiebook.interfaces.SearchRecipeInterface;
+import com.eleven.group.myrecipiebook.interfaces.SearchRecipesInterface;
 import com.eleven.group.myrecipiebook.manager.TotalCaloriesManager;
 import com.eleven.group.myrecipiebook.model.Nutrition;
 import com.eleven.group.myrecipiebook.model.Recipe;
+import com.eleven.group.myrecipiebook.model.RecipeResponse;
+import com.eleven.group.myrecipiebook.model.RecipesResponse;
+import com.eleven.group.myrecipiebook.network.YummlyClient;
+import com.eleven.group.myrecipiebook.util.RecipeUtility;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LegendEntry;
@@ -44,6 +50,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import cz.msebera.android.httpclient.Header;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.R.attr.description;
 import static android.util.Log.d;
@@ -61,7 +70,10 @@ public class MacrosCalculation extends AppCompatActivity {
     TextView macroCalories, mCaloriesFromText, mTotalCalories, mProteinMacro, mCarbMacro, mFatMacro;
     PieChart pieChart;
     String recipeQuery, recipeString;
-    Recipe recipe;
+    RecipeResponse recipe;
+
+    SearchRecipesInterface mRecipesInterface;
+    SearchRecipeInterface mRecipeInterface;
 
     double totalCalories = 0.0;
     double proteinCalories = 0.0;
@@ -88,7 +100,6 @@ public class MacrosCalculation extends AppCompatActivity {
         mCarbMacro = (TextView) findViewById(R.id.tvMacroCarbs);
         mFatMacro = (TextView) findViewById(R.id.tvMacroFat);
 
-        client = new AsyncHttpClient();
         try {
             handleFoodQuery(recipeQuery);
         } catch (UnsupportedEncodingException e) {
@@ -186,7 +197,7 @@ public class MacrosCalculation extends AppCompatActivity {
     }
 
     public void calorieCalculation(){
-        ArrayList<Nutrition> nutritions = recipe.getNutritionEstimates();
+        ArrayList<Nutrition> nutritions = recipe.getNutrition();
 
         for(Nutrition nutrition: nutritions){
             if(nutrition.getAttribute().equals("PROCNT")){
@@ -224,78 +235,40 @@ public class MacrosCalculation extends AppCompatActivity {
 
     //Calls to get the recipes based on the query
     public void handleFoodQuery(String query) throws UnsupportedEncodingException {
-        String strUrl = getString(R.string.YUMMLY_SEARCH_RECIPE_API);
-        String apiId = getString(R.string.YUMMLY_APP_ID);
-        String apiKey = getString(R.string.YUMMLY_API_KEY);
 
-        RequestParams params = new RequestParams();
-        params.put("_app_id", apiId);
-        params.put("_app_key", apiKey);
-        params.put("q", query);
-
-        client.get(strUrl, params, new JsonHttpResponseHandler(){
+        RecipeUtility.getRecipesService().getRecipes(getString(R.string.YUMMLY_APP_ID),
+                getString(R.string.YUMMLY_API_KEY),query).enqueue(new Callback<RecipesResponse>() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                d("DEBUG",response.toString());
-
-                try{
-                    //then retrieves the first result and makes the call using the first recipe's recipe id
-                    getRecipeForNutrition(response.getJSONArray("matches").getJSONObject(1).getString("id"));
-                }
-                catch(JSONException e){
-                    e.printStackTrace();
+            public void onResponse(Call<RecipesResponse> call, Response<RecipesResponse> response) {
+                try {
+                    getRecipeForNutrition(response.body().getRecipes().get(0).getId());
                 } catch (UnsupportedEncodingException e) {
+                    mDialog.dismiss();
                     e.printStackTrace();
                 }
             }
+
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                d("onFailure: ", "" + throwable.toString());
+            public void onFailure(Call<RecipesResponse> call, Throwable t) {
+                mDialog.dismiss();
             }
         });
+
     }
 
     public void getRecipeForNutrition(String id) throws UnsupportedEncodingException {
-        StringBuilder strUrl = new StringBuilder(getString(R.string.YUMMLY_GET_RECIPE_API));
-        strUrl.append("/").append(id);
-        String apiId = getString(R.string.YUMMLY_APP_ID);
-        String apiKey = getString(R.string.YUMMLY_API_KEY);
 
-        RequestParams params = new RequestParams();
-        params.put("_app_id", apiId);
-        params.put("_app_key", apiKey);
-        client.get(strUrl.toString(), params, new JsonHttpResponseHandler(){
+        RecipeUtility.getRecipeService().getRecipe(id, getString(R.string.YUMMLY_APP_ID),
+                getString(R.string.YUMMLY_API_KEY)).enqueue(new Callback<RecipeResponse>() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                d("getNutritionResponse:",response.toString());
-                recipe = Recipe.fromJSONObject(response);
+            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
+                recipe = response.body();
                 calorieCalculation();
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable t, JSONObject json) {
-                d("onFailure: ", "" + statusCode);
-                d("onFailure: ", "" + json);
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                d("onSuccess: ", "" + response.toString());
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                d("onFailure: ", "" + errorResponse.toString());
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                d("onFailure: ", "" + throwable.toString());
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                d("onSuccess: ", "" + responseString);
+            public void onFailure(Call<RecipeResponse> call, Throwable t) {
+                mDialog.dismiss();
             }
         });
     }

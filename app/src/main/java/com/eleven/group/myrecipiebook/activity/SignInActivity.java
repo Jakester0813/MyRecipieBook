@@ -54,6 +54,10 @@ public class SignInActivity extends AppCompatActivity{
      * Id to identity READ_CONTACTS permission request.
      */
 
+    /*
+     * Created By: Jake Rushing
+     */
+
     private FirebaseAuth mAuth;
 
     private static final int REQUEST_READ_CONTACTS = 0;

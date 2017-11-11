@@ -8,7 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import com.eleven.group.myrecipiebook.R;
 
 
+
 public class SplashActivity extends AppCompatActivity {
+
+    /*
+     * Created By: Jake Rushing
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

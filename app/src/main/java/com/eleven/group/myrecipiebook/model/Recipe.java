@@ -79,7 +79,7 @@ public class Recipe {
 
     public Recipe(){}
 
-    public Recipe(JSONObject jsonObject){
+    /*public Recipe(JSONObject jsonObject){
         try {
             this.detailRecipeName = jsonObject.getString("name");
             this.detailRecipeImage = jsonObject.getJSONArray("images").getJSONObject(0).getString("hostedLargeUrl");
@@ -112,10 +112,10 @@ public class Recipe {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
-    public static Recipe fromJSONObject(JSONObject object){
+    /*public static Recipe fromJSONObject(JSONObject object){
         return new Recipe(object);
-    }
+    }*/
 
 }

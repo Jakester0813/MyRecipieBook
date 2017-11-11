@@ -29,6 +29,9 @@ public class SignUp extends AppCompatActivity {
     Button signUp;
     private FirebaseAuth mAuth;
 
+    /*
+     * Created By: Jake Rushing
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

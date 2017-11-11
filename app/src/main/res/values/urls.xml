@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="YUMMLY_BASE_API">http://api.yummly.com</string>
     <string name="YUMMLY_SEARCH_RECIPE_API">http://api.yummly.com/v1/api/recipes</string>
     <string name="YUMMLY_GET_RECIPE_API">http://api.yummly.com/v1/api/recipe</string>
 </resources>
