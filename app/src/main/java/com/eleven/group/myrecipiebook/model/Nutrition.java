@@ -1,12 +1,17 @@
 package com.eleven.group.myrecipiebook.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.parceler.Parcel;
 
 @Parcel
 public class Nutrition {
+    @SerializedName("attribute")
     private String attribute;
+
+    @SerializedName("value")
     private Double value;
 
     public String getAttribute() {
@@ -25,7 +30,7 @@ public class Nutrition {
         this.value = value;
     }
 
-    public Nutrition(){}
+    /*public Nutrition(){}
 
     public Nutrition(JSONObject jsonObject){
         try {
@@ -34,5 +39,5 @@ public class Nutrition {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

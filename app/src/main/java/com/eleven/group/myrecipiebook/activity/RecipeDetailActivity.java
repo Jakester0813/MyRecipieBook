@@ -21,7 +21,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.eleven.group.myrecipiebook.R;
 import com.eleven.group.myrecipiebook.model.Recipe;
+import com.eleven.group.myrecipiebook.model.RecipeResponse;
 import com.eleven.group.myrecipiebook.model.SearchRecipe;
+import com.eleven.group.myrecipiebook.network.YummlyClient;
+import com.eleven.group.myrecipiebook.util.RecipeUtility;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -34,6 +37,9 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.R.attr.apiKey;
 import static com.eleven.group.myrecipiebook.R.id.ivRecipeImage;
@@ -52,7 +58,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     ListView ingredients;
     ArrayAdapter<String> adapter;
     Toolbar toolbar;
-    Recipe mRecipe;
+    RecipeResponse mRecipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,16 +76,16 @@ public class RecipeDetailActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void detailView(Recipe recipe){
+    public void detailView(RecipeResponse recipe){
         recipeImage = (ImageView) findViewById(ivRecipeImage);
         recipeName = (TextView) findViewById(tvRecipeName);
         totalTime = (TextView) findViewById(tvTotalTime);
         rating = (TextView) findViewById(tvRating);
         ingredients = (ListView) findViewById(lvIngredients);
 
-        String image = recipe.getDetailRecipeImage();
+        String image = recipe.getImage();
         Glide.with(getApplicationContext()).load(image).into(recipeImage);
-        recipeName.setText(recipe.getDetailRecipeName());
+        recipeName.setText(recipe.getName());
         totalTime.setText(recipe.getTotalTime());
         rating.setText(""+recipe.getRating());
 
@@ -102,21 +108,26 @@ public class RecipeDetailActivity extends AppCompatActivity {
         params.put("_app_id", appId);
         params.put("_app_key", appKey);
 
-        client.get(strUrl, params, new JsonHttpResponseHandler(){
+        /*
+         * Added By: Jake Rushing
+         */
+        RecipeUtility.getRecipeService().getRecipe(recipeId, getString(R.string.YUMMLY_APP_ID),
+                getString(R.string.YUMMLY_API_KEY)).enqueue(new Callback<RecipeResponse>() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("getRecipeResponse",response.toString());
-                detailView(Recipe.fromJSONObject(response));
+            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
+                detailView(response.body());
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable t, JSONObject json) {
-                Log.d("onFailure: ", "" + statusCode);
-                Log.d("onFailure: ", "" + json);
+            public void onFailure(Call<RecipeResponse> call, Throwable t) {
+
             }
         });
     }
 
+    /*
+     * Created By: Jake Rushing
+     */
     private void shareRecipe(){
         Intent shareRecipeIntent = new Intent();
         shareRecipeIntent.setAction(Intent.ACTION_SEND);
@@ -127,7 +138,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     }
 
     private String setTextForSharing(){
-        StringBuilder sb = new StringBuilder(mRecipe.getDetailRecipeName());
+        StringBuilder sb = new StringBuilder(mRecipe.getName());
         sb.append("\n \n");
         sb.append("Ingredients: \n \n");
         try {
@@ -141,6 +152,10 @@ public class RecipeDetailActivity extends AppCompatActivity {
         return sb.toString();
     }
 
+    /*
+     * Created By: Jake Rushing
+     */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -152,6 +167,10 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+
+    /*
+     * Created By: Jake Rushing
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
